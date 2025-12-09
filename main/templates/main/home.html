@@ -1,0 +1,602 @@
+{% extends 'main/base.html' %}
+
+{% block title %}مشاوره حقوقی تلفنی، مشاوره آنلاین رایگان | مرکز مشاوره عدل‌بان{% endblock %}
+
+{% block breadcrumb %}
+<!-- Breadcrumb -->
+<div class="container mx-auto px-4 py-4">
+    <nav class="flex text-sm text-gray-600 dark:text-gray-400" aria-label="breadcrumb">
+        <a href="{% url 'main:home' %}" class="hover:text-primary-600 dark:hover:text-primary-400 transition-colors">خانه</a>
+        <span class="mx-2 text-gray-400">/</span>
+        <span class="text-primary-600 dark:text-primary-400 font-semibold">مشاوره حقوقی</span>
+    </nav>
+</div>
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="relative bg-gradient-to-bl from-gray-50 via-primary-50/50 to-indigo-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden" aria-labelledby="hero-title">
+    <!-- Background Pattern -->
+    <div class="absolute inset-0 opacity-5 dark:opacity-10" aria-hidden="true">
+        <svg class="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <defs>
+                <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
+                    <path d="M 10 0 L 0 0 0 10" fill="none" stroke="currentColor" stroke-width="0.5"/>
+                </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#grid)"/>
+        </svg>
+    </div>
+    
+    <!-- Decorative Blobs -->
+    <div class="absolute top-20 right-10 w-72 h-72 bg-primary-300 dark:bg-primary-700 rounded-full mix-blend-multiply dark:mix-blend-overlay filter blur-3xl opacity-20 animate-pulse-slow" aria-hidden="true"></div>
+    <div class="absolute bottom-20 left-10 w-72 h-72 bg-purple-300 dark:bg-purple-700 rounded-full mix-blend-multiply dark:mix-blend-overlay filter blur-3xl opacity-20 animate-pulse-slow animation-delay-2000" aria-hidden="true"></div>
+    
+    <div class="container mx-auto px-4 py-16 md:py-24 relative">
+        <div class="flex flex-col lg:flex-row items-center gap-12">
+            <!-- Text Content -->
+            <div class="lg:w-1/2 text-center lg:text-right">
+                <div class="inline-flex items-center gap-2 bg-primary-100 dark:bg-primary-900/50 text-primary-700 dark:text-primary-300 px-4 py-2 rounded-full text-sm font-medium mb-6">
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <span>پشتیبانی ۲۴ ساعته</span>
+                </div>
+                
+                <h1 id="hero-title" class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 dark:text-white mb-6 leading-tight">
+                    مشاوره حقوقی
+                    <span class="gradient-text">تلفنی، آنلاین</span>
+                    و رایگان
+                </h1>
+                
+                <p class="text-lg text-gray-600 dark:text-gray-300 mb-6 leading-relaxed max-w-xl mx-auto lg:mx-0">
+                    مشاوره حقوقی تلفنی برای اخذ اطلاعات اولیه، مشاوره و ارجاع به وکیل متخصص. 
+                    با وکلای مجرب دادگستری در کوتاه‌ترین زمان ممکن ارتباط برقرار کنید.
+                </p>
+                
+                <p class="text-gray-500 dark:text-gray-400 mb-8 leading-relaxed max-w-xl mx-auto lg:mx-0">
+                    تماس‌گیرندگان از سراسر ایران می‌توانند از طریق شماره‌های مندرج راهنمایی دریافت کنند.
+                    مشاوره تلفنی مناسب برای افرادی که امکان شرکت در جلسات حضوری را ندارند.
+                </p>
+                
+                <div class="flex flex-wrap justify-center lg:justify-start gap-4">
+                    <a href="{% url 'main:consultation_request' %}" class="btn btn-primary text-lg">
+                        <i class="fas fa-calendar-plus ml-2" aria-hidden="true"></i>
+                        رزرو مشاوره تلفنی
+                    </a>
+                    <a href="{% url 'main:consultation_request' %}" 
+                       class="btn bg-gray-800 hover:bg-gray-900 dark:bg-gray-700 dark:hover:bg-gray-600 text-white">
+                        <i class="fas fa-clock ml-2" aria-hidden="true"></i>
+                        مشاوره ۲۴ ساعته
+                    </a>
+                </div>
+                
+                <!-- Trust Badges -->
+                <div class="flex flex-wrap justify-center lg:justify-start items-center gap-6 mt-10 pt-8 border-t border-gray-200 dark:border-gray-700">
+                    <div class="flex items-center gap-2 text-gray-600 dark:text-gray-400">
+                        <i class="fas fa-users text-primary-500 text-xl" aria-hidden="true"></i>
+                        <span><strong class="text-gray-900 dark:text-white">+۵۰۰۰</strong> مشاوره موفق</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-gray-600 dark:text-gray-400">
+                        <i class="fas fa-user-tie text-primary-500 text-xl" aria-hidden="true"></i>
+                        <span><strong class="text-gray-900 dark:text-white">+۲۰</strong> وکیل متخصص</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-gray-600 dark:text-gray-400">
+                        <i class="fas fa-star text-yellow-500 text-xl" aria-hidden="true"></i>
+                        <span><strong class="text-gray-900 dark:text-white">۴.۸</strong> امتیاز کاربران</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Image -->
+            <div class="lg:w-1/2 flex justify-center">
+                <div class="relative">
+                    <div class="absolute -inset-4 bg-gradient-to-r from-primary-500 to-purple-500 rounded-full opacity-20 blur-2xl animate-pulse-slow" aria-hidden="true"></div>
+                    <div class="relative">
+                        <div class="aspect-square bg-gradient-to-br from-primary-100 to-purple-100 dark:from-gray-800 dark:to-gray-700 rounded-3xl p-8 flex items-center justify-center shadow-2xl">
+                            <div class="text-center">
+                                <i class="fas fa-scale-balanced text-6xl text-primary-600 dark:text-primary-400 mb-4"></i>
+                                <p class="text-xl font-bold text-gray-800 dark:text-white">مشاوره حقوقی</p>
+                                <p class="text-sm text-gray-600 dark:text-gray-400">حقوق شما، اولویت ما</p>
+                            </div>
+                        </div>
+                        <!-- Floating Badges -->
+                        <div class="absolute -top-4 -right-4 bg-white dark:bg-gray-900 shadow-2xl rounded-2xl p-4 border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all animate-bounce-slow">
+                            <div class="flex items-center gap-3">
+                                <div class="w-14 h-14 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
+                                    <i class="fas fa-crown text-white text-xl"></i>
+                                </div>
+                                <div class="text-right">
+                                    <div class="font-bold text-gray-900 dark:text-white text-sm">قاضی بازنشسته</div>
+                                    <div class="text-xs text-gray-500 dark:text-gray-400">تجربه قضایی</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="absolute -bottom-4 -left-4 bg-white dark:bg-gray-900 shadow-2xl rounded-2xl p-4 border border-gray-200 dark:border-gray-700 hover:shadow-xl transition-all animate-bounce-slow" style="animation-delay: 1s">
+                            <div class="flex items-center gap-3">
+                                <div class="w-14 h-14 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
+                                    <i class="fas fa-user-tie text-white text-xl"></i>
+                                </div>
+                                <div class="text-right">
+                                    <div class="font-bold text-gray-900 dark:text-white text-sm">وکیل پایه یک</div>
+                                    <div class="text-xs text-gray-500 dark:text-gray-400">تخصص وکالت</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Wave Divider -->
+    <div class="absolute bottom-0 right-0 left-0" aria-hidden="true">
+        <svg viewBox="0 0 1200 120" preserveAspectRatio="none" class="w-full h-16 md:h-24 text-white dark:text-gray-900">
+            <path d="M1200 120L0 16.48 0 0 1200 0 1200 120z" fill="currentColor"/>
+        </svg>
+    </div>
+</section>
+
+
+<!-- Questions Section -->
+<section class="py-16 md:py-24 bg-white dark:bg-gray-900" aria-labelledby="questions-title">
+    <div class="container mx-auto px-4">
+        <header class="text-center mb-12">
+            <span class="inline-block px-4 py-1 bg-primary-100 dark:bg-primary-900/50 text-primary-700 dark:text-primary-300 rounded-full text-sm font-medium mb-4">
+                سوالات و پاسخ‌ها
+            </span>
+            <h2 id="questions-title" class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+                سوالات حقوقی کاربران
+            </h2>
+            <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                پرسش و پاسخ‌های اخیر کاربران در زمینه‌های مختلف حقوقی
+            </p>
+        </header>
+        
+        <div class="flex flex-col lg:flex-row gap-8">
+            <!-- Recent Questions -->
+            <div class="lg:w-1/2 animate-on-scroll">
+                <article class="bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 md:p-8 shadow-lg h-full">
+                    <header class="flex justify-between items-center mb-6">
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
+                            <i class="fas fa-question-circle text-primary-500" aria-hidden="true"></i>
+                            سوالات اخیر
+                        </h3>
+                        <a href="#" 
+                           class="text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300 font-semibold text-sm flex items-center gap-1">
+                            مشاهده همه
+                            <i class="fas fa-arrow-left text-xs" aria-hidden="true"></i>
+                        </a>
+                    </header>
+                    
+                    <div class="space-y-4" role="list">
+                        <!-- Question 1 -->
+                        <div class="card border border-gray-200 dark:border-gray-600" role="listitem">
+                            <button class="accordion-btn w-full text-right flex justify-between items-start gap-4"
+                                    aria-expanded="false">
+                                <span class="font-medium text-gray-800 dark:text-gray-200 text-right leading-relaxed">
+                                    آیا می‌توان از کارفرما به دلیل عدم پرداخت حقوق شکایت کرد؟
+                                </span>
+                                <i class="fas fa-chevron-down text-gray-500 transition-transform duration-200 flex-shrink-0 mt-1" aria-hidden="true"></i>
+                            </button>
+                            <div class="accordion-content mt-4 pt-4 border-t border-gray-200 dark:border-gray-600 hidden">
+                                <p class="text-gray-600 dark:text-gray-300 mb-4">
+                                    حقوقم چند ماه است پرداخت نشده و قصد دارم شکایت کنم. آیا امکان‌پذیر است؟
+                                </p>
+                                <a href="#" 
+                                   class="inline-flex items-center gap-2 text-primary-600 hover:text-primary-700 dark:text-primary-400 font-semibold">
+                                    <i class="fas fa-gavel" aria-hidden="true"></i>
+                                    مشاهده پاسخ وکیل
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- Question 2 -->
+                        <div class="card border border-gray-200 dark:border-gray-600" role="listitem">
+                            <button class="accordion-btn w-full text-right flex justify-between items-start gap-4"
+                                    aria-expanded="false">
+                                <span class="font-medium text-gray-800 dark:text-gray-200 text-right leading-relaxed">
+                                    مراحل طلاق در ایران چیست؟
+                                </span>
+                                <i class="fas fa-chevron-down text-gray-500 transition-transform duration-200 flex-shrink-0 mt-1" aria-hidden="true"></i>
+                            </button>
+                            <div class="accordion-content mt-4 pt-4 border-t border-gray-200 dark:border-gray-600 hidden">
+                                <p class="text-gray-600 dark:text-gray-300 mb-4">
+                                    برای درخواست طلاق، چه مراحلی باید طی شود؟
+                                </p>
+                                <a href="#" 
+                                   class="inline-flex items-center gap-2 text-primary-600 hover:text-primary-700 dark:text-primary-400 font-semibold">
+                                    <i class="fas fa-gavel" aria-hidden="true"></i>
+                                    مشاهده پاسخ وکیل
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 text-center">
+                        <a href="{% url 'main:consultation_request' %}" class="btn btn-accent">
+                            <i class="fas fa-plus ml-2" aria-hidden="true"></i>
+                            پرسیدن سوال جدید
+                        </a>
+                    </div>
+                </article>
+            </div>
+            
+            <!-- Recent Answers -->
+            <div class="lg:w-1/2 animate-on-scroll">
+                <article class="bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 md:p-8 shadow-lg h-full">
+                    <header class="flex justify-between items-center mb-6">
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
+                            <i class="fas fa-comment-dots text-accent-500" aria-hidden="true"></i>
+                            پاسخ‌های اخیر
+                        </h3>
+                        <a href="#" 
+                           class="text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300 font-semibold text-sm flex items-center gap-1">
+                            مشاهده همه
+                            <i class="fas fa-arrow-left text-xs" aria-hidden="true"></i>
+                        </a>
+                    </header>
+                    
+                    <div class="space-y-4" role="list">
+                        <!-- Answer 1 -->
+                        <article class="card border border-gray-200 dark:border-gray-600" role="listitem">
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 bg-accent-100 dark:bg-accent-900/50 rounded-xl flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-gavel text-accent-600 dark:text-accent-400 text-lg" aria-hidden="true"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <h4 class="font-semibold text-gray-800 dark:text-gray-200 mb-2">
+                                        شکایت از کارفرما
+                                    </h4>
+                                    <p class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
+                                        بله، شما می‌توانید از طریق اداره کار و رفاه اجتماعی اقدام به شکایت کنید.
+                                    </p>
+                                    <a href="#" 
+                                       class="inline-flex items-center gap-1 mt-3 text-sm text-primary-600 hover:text-primary-700 dark:text-primary-400 font-medium">
+                                        مشاهده جزئیات
+                                        <i class="fas fa-arrow-left text-xs" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </article>
+                        
+                        <!-- Answer 2 -->
+                        <article class="card border border-gray-200 dark:border-gray-600" role="listitem">
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/50 rounded-xl flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-balance-scale text-blue-600 dark:text-blue-400 text-lg" aria-hidden="true"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <h4 class="font-semibold text-gray-800 dark:text-gray-200 mb-2">
+                                        مراحل طلاق
+                                    </h4>
+                                    <p class="text-gray-600 dark:text-gray-300 text-sm leading-relaxed">
+                                        ابتدا درخواست طلاق به دادگاه ارائه می‌شود و پس از تأیید دادگاه، مراحل ادامه می‌یابد.
+                                    </p>
+                                    <a href="#" 
+                                       class="inline-flex items-center gap-1 mt-3 text-sm text-primary-600 hover:text-primary-700 dark:text-primary-400 font-medium">
+                                        مشاهده جزئیات
+                                        <i class="fas fa-arrow-left text-xs" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </article>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Consultation Types -->
+<section class="py-16 md:py-24 bg-gray-50 dark:bg-gray-800" aria-labelledby="consultation-types-title">
+    <div class="container mx-auto px-4">
+        <header class="text-center mb-12">
+            <span class="inline-block px-4 py-1 bg-primary-100 dark:bg-primary-900/50 text-primary-700 dark:text-primary-300 rounded-full text-sm font-medium mb-4">
+                روش‌های مشاوره
+            </span>
+            <h2 id="consultation-types-title" class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+                انواع مشاوره حقوقی
+            </h2>
+            <p class="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                انتخاب بهترین روش مشاوره بر اساس نیاز و شرایط شما
+            </p>
+        </header>
+        
+        <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <!-- Phone Consultation -->
+            <article class="group bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border-2 border-transparent hover:border-primary-500 animate-on-scroll">
+                <div class="text-center mb-6">
+                    <div class="inline-flex items-center justify-center w-20 h-20 bg-blue-100 dark:bg-blue-900/50 rounded-2xl mb-4 group-hover:scale-110 transition-transform duration-300">
+                        <i class="fas fa-phone-alt text-3xl text-blue-600 dark:text-blue-400" aria-hidden="true"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-3">
+                        مشاوره حقوقی تلفنی
+                    </h3>
+                </div>
+                
+                <p class="text-gray-600 dark:text-gray-300 leading-relaxed text-center mb-6">
+                    مشاوره حقوقی تلفنی یک گزینه سریع و راحت برای دریافت راهنمایی‌های حقوقی است. 
+                    وکلای حرفه‌ای می‌توانند از طریق تلفن در کوتاه‌ترین زمان ممکن به سوالات شما پاسخ دهند.
+                </p>
+                
+                <ul class="space-y-3 mb-8">
+                    <li class="flex items-center gap-3 text-gray-700 dark:text-gray-300">
+                        <span class="w-6 h-6 bg-accent-100 dark:bg-accent-900/50 rounded-full flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-check text-accent-600 dark:text-accent-400 text-xs" aria-hidden="true"></i>
+                        </span>
+                        <span>پاسخگویی سریع و فوری</span>
+                    </li>
+                    <li class="flex items-center gap-3 text-gray-700 dark:text-gray-300">
+                        <span class="w-6 h-6 bg-accent-100 dark:bg-accent-900/50 rounded-full flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-check text-accent-600 dark:text-accent-400 text-xs" aria-hidden="true"></i>
+                        </span>
+                        <span>مناسب برای شهرهای دورافتاده</span>
+                    </li>
+                    <li class="flex items-center gap-3 text-gray-700 dark:text-gray-300">
+                        <span class="w-6 h-6 bg-accent-100 dark:bg-accent-900/50 rounded-full flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-check text-accent-600 dark:text-accent-400 text-xs" aria-hidden="true"></i>
+                        </span>
+                        <span>صرفه‌جویی در زمان و هزینه</span>
+                    </li>
+                </ul>
+                
+                <a href="tel:09129413828" 
+                   class="btn w-full bg-blue-500 hover:bg-blue-600 text-white justify-center">
+                    <i class="fas fa-phone-alt ml-2" aria-hidden="true"></i>
+                    تماس فوری
+                </a>
+            </article>
+            
+            <!-- In-Person Consultation -->
+            <article class="group bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border-2 border-transparent hover:border-accent-500 animate-on-scroll">
+                <div class="text-center mb-6">
+                    <div class="inline-flex items-center justify-center w-20 h-20 bg-accent-100 dark:bg-accent-900/50 rounded-2xl mb-4 group-hover:scale-110 transition-transform duration-300">
+                        <i class="fas fa-user-tie text-3xl text-accent-600 dark:text-accent-400" aria-hidden="true"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-3">
+                        مشاوره حقوقی حضوری
+                    </h3>
+                </div>
+                
+                <p class="text-gray-600 dark:text-gray-300 leading-relaxed text-center mb-6">
+                    مشاوره حقوقی حضوری بهترین گزینه برای مسائل حقوقی پیچیده و حساس است که نیاز به 
+                    بررسی مدارک و مستندات بیشتری دارد.
+                </p>
+                
+                <ul class="space-y-3 mb-8">
+                    <li class="flex items-center gap-3 text-gray-700 dark:text-gray-300">
+                        <span class="w-6 h-6 bg-accent-100 dark:bg-accent-900/50 rounded-full flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-check text-accent-600 dark:text-accent-400 text-xs" aria-hidden="true"></i>
+                        </span>
+                        <span>بررسی دقیق مدارک و مستندات</span>
+                    </li>
+                    <li class="flex items-center gap-3 text-gray-700 dark:text-gray-300">
+                        <span class="w-6 h-6 bg-accent-100 dark:bg-accent-900/50 rounded-full flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-check text-accent-600 dark:text-accent-400 text-xs" aria-hidden="true"></i>
+                        </span>
+                        <span>مناسب برای مسائل پیچیده حقوقی</span>
+                    </li>
+                    <li class="flex items-center gap-3 text-gray-700 dark:text-gray-300">
+                        <span class="w-6 h-6 bg-accent-100 dark:bg-accent-900/50 rounded-full flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-check text-accent-600 dark:text-accent-400 text-xs" aria-hidden="true"></i>
+                        </span>
+                        <span>اعتمادسازی بیشتر با وکیل</span>
+                    </li>
+                </ul>
+                
+                <a href="{% url 'main:consultation_request' %}" 
+                   class="btn btn-accent w-full justify-center">
+                    <i class="fas fa-calendar-check ml-2" aria-hidden="true"></i>
+                    رزرو وقت حضوری
+                </a>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- Retired Judges Section - SEO Optimized -->
+<section id="retired-judges" class="py-20 bg-white dark:bg-gray-900">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-16" data-animate>
+            <span class="inline-block bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-6 py-2 rounded-full font-bold text-lg mb-4">
+                <i class="fas fa-crown ml-2"></i>
+                ویژه
+            </span>
+            <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-6">
+                <span class="gradient-text">مشاوره با قاضی بازنشسته</span><br>
+                تجربه قضایی در خدمت شما
+            </h2>
+            <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                برای اولین بار در ایران، امکان <strong>مشاوره حقوقی با قضات بازنشسته دادگستری</strong> را فراهم کرده‌ایم. از تجربه عمیق قضایی و بینش منحصر به فرد قضات بهره‌مند شوید.
+            </p>
+        </div>
+        
+        <!-- Benefits -->
+        <div class="grid md:grid-cols-3 gap-8 mb-16 stagger-animation">
+            <div class="bg-gradient-to-br from-blue-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 service-card border border-blue-100 dark:border-gray-700">
+                <div class="w-20 h-20 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center mb-6 mx-auto">
+                    <i class="fas fa-eye text-white text-2xl"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-center text-gray-900 dark:text-white mb-4">بینش قضایی</h3>
+                <p class="text-gray-600 dark:text-gray-300 text-center leading-relaxed">
+                    دسترسی به تحلیل‌های مبتنی بر سال‌ها تجربه در دادگاه‌ها و آشنایی کامل با رویه‌های قضایی
+                </p>
+                <ul class="mt-6 space-y-3">
+                    <li class="flex items-center text-gray-700 dark:text-gray-300">
+                        <i class="fas fa-check-circle text-green-500 ml-2"></i>
+                        تحلیل پرونده از نگاه قاضی
+                    </li>
+                    <li class="flex items-center text-gray-700 dark:text-gray-300">
+                        <i class="fas fa-check-circle text-green-500 ml-2"></i>
+                        پیش‌بینی روند دادرسی
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="bg-gradient-to-br from-purple-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 service-card border border-purple-100 dark:border-gray-700">
+                <div class="w-20 h-20 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mb-6 mx-auto">
+                    <i class="fas fa-shield-alt text-white text-2xl"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-center text-gray-900 dark:text-white mb-4">امنیت کامل</h3>
+                <p class="text-gray-600 dark:text-gray-300 text-center leading-relaxed">
+                    مشاوره کاملاً محرمانه با تضمین حریم خصوصی. اطلاعات شما نزد ما کاملاً امن است.
+                </p>
+                <ul class="mt-6 space-y-3">
+                    <li class="flex items-center text-gray-700 dark:text-gray-300">
+                        <i class="fas fa-check-circle text-green-500 ml-2"></i>
+                        مشاوره محرمانه
+                    </li>
+                    <li class="flex items-center text-gray-700 dark:text-gray-300">
+                        <i class="fas fa-check-circle text-green-500 ml-2"></i>
+                        تضمین امنیت اطلاعات
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="bg-gradient-to-br from-green-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-2xl p-8 shadow-xl hover:shadow-2xl transition-all duration-500 service-card border border-green-100 dark:border-gray-700">
+                <div class="w-20 h-20 bg-gradient-to-r from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center mb-6 mx-auto">
+                    <i class="fas fa-bolt text-white text-2xl"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-center text-gray-900 dark:text-white mb-4">دسترسی فوری</h3>
+                <p class="text-gray-600 dark:text-gray-300 text-center leading-relaxed">
+                    بدون نیاز به مراجعه حضوری و صرف زمان. مشاوره آنلاین و تلفنی در سریع‌ترین زمان ممکن
+                </p>
+                <ul class="mt-6 space-y-3">
+                    <li class="flex items-center text-gray-700 dark:text-gray-300">
+                        <i class="fas fa-check-circle text-green-500 ml-2"></i>
+                        مشاوره ۲۴ ساعته
+                    </li>
+                    <li class="flex items-center text-gray-700 dark:text-gray-300">
+                        <i class="fas fa-check-circle text-green-500 ml-2"></i>
+                        پاسخگویی فوری
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- CTA Section -->
+        <div class="bg-gradient-to-r from-theme/10 via-white to-purple-500/10 dark:from-gray-800 dark:via-gray-800 dark:to-gray-800 rounded-3xl p-8 md:p-12 shadow-2xl border border-theme/20" data-animate>
+            <div class="flex flex-col lg:flex-row items-center justify-between">
+                <div class="lg:w-2/3 mb-8 lg:mb-0">
+                    <h3 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+                        آماده مشاوره با قاضی بازنشسته هستید؟
+                    </h3>
+                    <p class="text-gray-600 dark:text-gray-300 text-lg">
+                        همین حالا با شماره زیر تماس بگیرید و از تجربه قضات بازنشسته بهره‌مند شوید.
+                    </p>
+                </div>
+                <div class="lg:w-1/3 text-center lg:text-left">
+                    <a href="{% url 'main:consultation_request' %}" class="inline-block bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:shadow-2xl hover:scale-105 animate-pulse">
+                        <i class="fas fa-phone-volume ml-2"></i>
+                        تماس با قاضی
+                    </a>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mt-3">
+                        پاسخگویی ۲۴ ساعته
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section class="py-20 bg-gray-50 dark:bg-gray-800">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-16" data-animate>
+            <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-6">
+                خدمات حقوقی ما
+            </h2>
+            <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                مجموعه‌ای کامل از خدمات حقوقی تخصصی با بهترین کیفیت
+            </p>
+        </div>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {% for service in services %}
+            <div class="bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 service-card" data-animate>
+                <div class="w-16 h-16 bg-gradient-to-r from-theme to-purple-600 rounded-xl flex items-center justify-center mb-6">
+                    <i class="{{ service.icon }} text-white text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-4">{{ service.title }}</h3>
+                <p class="text-gray-600 dark:text-gray-300 leading-relaxed">{{ service.description }}</p>
+            </div>
+            {% empty %}
+            <div class="col-span-full text-center text-gray-500">
+                <p>هیچ خدمتی یافت نشد.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="py-20 bg-white dark:bg-gray-900">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-16" data-animate>
+            <h2 class="text-4xl font-bold text-gray-900 dark:text-white mb-6">
+                سوالات متداول درباره مشاوره با قاضی بازنشسته
+            </h2>
+            <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                پاسخ به رایج‌ترین سوالات کاربران
+            </p>
+        </div>
+        
+        <div class="max-w-4xl mx-auto">
+            <div class="space-y-4" id="faq-accordion">
+                {% for faq in faqs %}
+                <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 overflow-hidden" data-animate>
+                    <button class="faq-question w-full text-right p-6 flex justify-between items-center hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors group">
+                        <span class="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-theme transition-colors">
+                            {{ faq.question }}
+                        </span>
+                        <i class="fas fa-chevron-down text-gray-500 transition-transform duration-300 group-hover:text-theme"></i>
+                    </button>
+                    <div class="faq-answer px-6 pb-6 hidden animate-fade-in-up">
+                        <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+                            {{ faq.answer }}
+                        </p>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="text-center text-gray-500">
+                    <p>هیچ سوال متداولی یافت نشد.</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Final CTA -->
+<section class="py-20 bg-gradient-to-r from-theme to-purple-600 dark:from-theme-dark dark:to-purple-800 text-white relative overflow-hidden">
+    <!-- Animated Elements -->
+    <div class="absolute inset-0">
+        <div class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -translate-y-32 translate-x-32"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-white/5 rounded-full -translate-y-32 -translate-x-32"></div>
+    </div>
+    
+    <div class="container mx-auto px-4 text-center relative z-10">
+        <h2 class="text-4xl font-bold mb-6" data-animate>
+            همین حالا مشاوره تخصصی دریافت کنید
+        </h2>
+        <p class="text-xl mb-8 max-w-2xl mx-auto opacity-90" data-animate style="animation-delay: 0.1s">
+            فرصت مشاوره با قضات بازنشسته و وکلای پایه یک را از دست ندهید
+        </p>
+        
+        <div class="flex flex-col sm:flex-row gap-6 justify-center items-center" data-animate style="animation-delay: 0.2s">
+            <a href="tel:09129413828" class="bg-white text-theme hover:bg-gray-100 px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:shadow-2xl hover:scale-105 flex items-center group">
+                <i class="fas fa-phone-volume ml-2 group-hover:animate-shake"></i>
+                تماس فوری: ۰۹۱۲۹۴۱۳۸۲۸
+            </a>
+            <a href="{% url 'main:consultation_request' %}" class="bg-transparent border-2 border-white hover:bg-white/10 px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 hover:shadow-lg flex items-center group">
+                <i class="fas fa-calendar-check ml-2 group-hover:animate-bounce"></i>
+                رزرو وقت مشاوره
+            </a>
+        </div>
+        
+        <p class="mt-8 opacity-75" data-animate style="animation-delay: 0.3s">
+            <i class="fas fa-clock ml-2"></i>
+            پاسخگویی ۲۴ ساعته، حتی در روزهای تعطیل
+        </p>
+    </div>
+</section>
+{% endblock %}
