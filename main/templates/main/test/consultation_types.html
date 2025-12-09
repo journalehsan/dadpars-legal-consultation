@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Test - Consultation Types</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all</head></title>.min.css"
+        />
+    </head>
+    <body class="bg-gray-100 p-8">
+        <div class="container mx-auto">
+            <h1 class="text-3xl font-bold mb-6">
+                Test - Consultation Types ({{ consultation_types|length }})
+            </h1>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                {% for consultation in consultation_types %}
+                <div class="bg-white p-6 rounded-lg shadow-lg border">
+                    <h2 class="text-xl font-bold mb-2">
+                        {{ consultation.title }}
+                    </h2>
+                    <p class="mb-4">{{ consultation.description }}</p>
+
+                    <div class="mb-4">
+                        <i class="{{ consultation.icon }}"></i>
+                    </div>
+
+                    <ul class="mb-4">
+                        {% for feature in consultation.get_features_list %}
+                        <li class="mb-1">{{ feature }}</li>
+                        {% endfor %}
+                    </ul>
+
+                    <div class="mb-4">
+                        Icon: {{ consultation.icon }}<br />
+                        Color: {{ consultation.button_color }}<br />
+                        Button URL: {{ consultation.button_url }}<br />
+                        Button Text: {{ consultation.button_text }}
+                    </div>
+
+                    <a
+                        href="{{ consultation.button_url }}"
+                        class="bg-blue-500 text-white px-4 py-2 rounded"
+                    >
+                        {{ consultation.button_text }}
+                    </a>
+                </div>
+                {% empty %}
+                <p class="text-center text-red-500">
+                    هیچ نوع مشاوره‌ای یافت نشد.
+                </p>
+                {% endfor %}
+            </div>
+        </div>
+    </body>
+</html>

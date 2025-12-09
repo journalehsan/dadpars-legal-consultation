@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Template - Home Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+</head>
+<body class="bg-gray-50 text-gray-900">
+    <div class="container mx-auto p-8">
+        <h1 class="text-3xl font-bold mb-8">Test Template - Home Page</h1>
+
+        <!-- Consultation Types Section -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6">انواع مشاوره ({{ consultation_types|length }} items)</h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                {% for consultation in consultation_types %}
+                <div class="bg-white p-6 rounded-lg shadow-lg border">
+                    <h3 class="text-xl font-bold mb-2">{{ consultation.title }}</h3>
+                    <p class="mb-4">{{ consultation.description }}</p>
+                    <div class="mb-4">
+                        <i class="{{ consultation.icon }}"></i>
+                    </div>
+                    <ul class="mb-4">
+                        {% for feature in consultation.get_features_list %}
+                        <li>{{ feature }}</li>
+                        {% endfor %}
+                    </ul>
+                    <a href="{{ consultation.button_url }}" class="bg-{{ consultation.button_color }}-500 text-white px-4 py-2 rounded">
+                        {{ consultation.button_text }}
+                    </a>
+                </div>
+                {% empty %}
+                <p>هیچ نوع مشاوره‌ای یافت نشد.</p>
+                {% endfor %}
+            </div>
+        </section>
+
+        <!-- Questions Section -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6">سوالات اخیر ({{ recent_questions|length }} items)</h2>
+            <div class="space-y-4">
+                {% for question in recent_questions %}
+                <div class="bg-white p-6 rounded-lg shadow-lg border">
+                    <h3 class="text-xl font-bold mb-2">{{ question.question }}</h3>
+                    {% if question.description %}
+                    <p class="mb-4">{{ question.description }}</p>
+                    {% endif %}
+                    {% if question.is_answered %}
+                    <a href="{{ question.get_absolute_url }}" class="text-blue-600">مشاهده پاسخ وکیل</a>
+                    {% else %}
+                    <p class="text-gray-500">پاسخ هنوز ثبت نشده است.</p>
+                    {% endif %}
+                </div>
+                {% empty %}
+                <p>هیچ سوال اخیری یافت نشد.</p>
+                {% endfor %}
+            </div>
+        </section>
+
+        <!-- Answers Section -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6">پاسخ‌های اخیر ({{ lawyer_answers|length }} items)</h2>
+            <div class="space-y-4">
+                {% for answer in lawyer_answers %}
+                <div class="bg</p>-white p-6 rounded-lg shadow-lg border">
+                    <h3 class="text-xl font-bold mb-2">{{ answer.question.question|truncatewords:3 }}</h3>
+                    <p>{{ answer.short_answer }}</p>
+                    <p class="text-sm text-gray-500 mt-2">توسط {{ answer.lawyer_title }}</p>
+                </div>
+                {% empty %}
+                <p>هیچ پاسخی یافت نشد.</p>
+                {% endfor %}
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6">خدمات ({{ services|length }} items)</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                {% for service in services %}
+                <div class="bg-white p-6 rounded-lg shadow-lg border">
+                    <h3 class="text-xl font-bold mb-2">{{ service.title }}</h3>
+                    <p>{{ service.description }}</p>
+                </div>
+                {% empty %}
+                <p>هیچ خدمتی یافت نشد.</p>
+                {% endfor %}
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6">سوالات متداول ({{ faqs|length }} items)</h2>
+            <div class="space-y-</p>4">
+                {% for faq in faqs %}
+                <div class="bg-white p-6 rounded-lg shadow-lg border">
+                    <h3 class="text-xl font-bold mb-2">{{ faq.question }}</h3>
+                    <p>{{ faq.answer }}</p>
+                </div>
+                {% empty %}
+                <p>هیچ سوال متداولی یافت نشد.</p>
+                {% endfor %}
+            </div>
+        </section>
+    </div>
+</body></p>
+</html>

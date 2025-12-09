@@ -1,0 +1,148 @@
+```{% extends 'main/base.html' %} {% block title %}{{ question.question }} |
+سوالات حقوقی{% endblock %} {% block content %}
+<div class="container mx-auto px-4 py-12">
+    <!-- Back Button -->
+    <div class="mb-6">
+        <a
+            href="{% url 'main:home' %}"
+            class="inline-flex items-center gap-2 text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300 font-medium"
+        >
+            <i class="fas fa-arrow-right" aria-hidden="true"></i>
+            بازگشت به صفحه اصلی
+        </a>
+    </div>
+
+    <!-- Question Details -->
+    <article
+        class="bg-white dark:bg-gray-900 rounded-2xl p-6 md:p-8 shadow-lg mb-8"
+    >
+        <header class="mb-6">
+            <div class="flex items-center gap-3 mb-4">
+                <span
+                    class="inline-block px-3 py-1 bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 rounded-full text-sm font-medium"
+                >
+                    {% for category, label in question.CATEGORY_CHOICES %}{% if
+                    question.category == category %}{{ label }}{% endif %}{%
+                    endfor %}
+                </span>
+                {% if question.questioner_name %}
+                <span class="text-gray-500 dark:text-gray-400 text-sm"
+                    >پرسیده شده توسط {{ question.questioner_name }}</span
+                >
+                {% endif %}
+            </div>
+            <h1
+                class="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white"
+            >
+                {{ question.question }}
+            </h1>
+        </header>
+
+        {% if question.description %}
+        <div class="text-gray-600 dark:text-gray-300 leading-relaxed mb-6">
+            <p>{{ question.description }}</p>
+        </div>
+        {% endif %}
+
+        <div class="text-sm text-gray-500 dark:text-gray-400">
+            <i class="fas fa-calendar ml-1" aria-hidden="true"></i>
+            {{ question.created_at|date:"Y/m/d" }}
+        </div>
+    </article>
+
+    <!-- Lawyer Answers -->
+    {% if answers %}
+    <section>
+        <h2
+            class="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-6"
+        >
+            پاسخ‌های وکلای متخصص
+        </h2>
+
+        <div class="space-y-6">
+            {% for answer in answers %}
+            <article
+                class="bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 md:p-8 shadow-lg"
+            >
+                <header class="flex items-start justify-between mb-4">
+                    <div class="flex items-center gap-4">
+                        {% if answer.icon == 'fas fa-gavel' %}
+                        <div
+                            class="w-12 h-12 bg-accent-100 dark:bg-accent-900/50 rounded-xl flex items-center justify-center flex-shrink-0"
+                        >
+                            <i
+                                class="{{ answer.icon }} text-accent-600 dark:text-accent-400 text-lg"
+                                aria-hidden="true"
+                            ></i>
+                        </div>
+                        {% else %}
+                        <div
+                            class="w-12 h-12 bg-blue-100 dark:bg-blue-900/50 rounded-xl flex items-center justify-center flex-shrink-0"
+                        >
+                            <i
+                                class="{{ answer.icon }} text-blue-600 dark:text-blue-400 text-lg"
+                                aria-hidden="true"
+                            ></i>
+                        </div>
+                        {% endif %}
+                        <div>
+                            <h3
+                                class="font-semibold text-gray-900 dark:text-white"
+                            >
+                                {{ answer.lawyer_title }}
+                            </h3>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">
+                                {{
+                                answer.lawyer.get_full_name|default:answer.lawyer.username
+                                }}
+                            </p>
+                        </div>
+                    </div>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">
+                        <i class="fas fa-calendar ml-1" aria-hidden="true"></i>
+                        {{ answer.created_at|date:"Y/m/d" }}
+                    </span>
+                </header>
+
+                <div class="text-gray-700 dark:text-gray-300 leading-relaxed">
+                    <p>{{ answer.answer|linebreaks }}</p>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+    </section>
+    {% else %}
+    <div
+        class="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-xl p-6 text-center"
+    >
+        <i
+            class="fas fa-exclamation-triangle text-yellow-600 dark:text-yellow-500 text-2xl mb-3"
+            aria-hidden="true"
+        ></i>
+        <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+            پاسخی هنوز ثبت نشده است
+        </h2>
+        <p class="text-gray-600 dark:text-gray-300 mb-4">
+            وکلای متخصص به زودی به این سوال پاسخ خواهند داد.
+        </p>
+    </div>
+    {% endif %}
+
+    <!-- CTA Section -->
+    <section
+        class="mt-12 text-center bg-gradient-to-r from-primary-50 to-purple-50 dark:from-gray-800 dark:to-gray-800 rounded-2xl p-8"
+    >
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+            سوال دارید؟
+        </h2>
+        <p class="text-gray-600 dark:text-gray-300 mb-6 max-w-2xl mx-auto">
+            اگر شما هم سوال حقوقی دارید، می‌توانید سوال خود را از طریق فرم
+            مشاوره ثبت کنید تا وکلای متخصص به آن پاسخ دهند.
+        </p>
+        <a href="{% url 'main:consultation_request' %}" class="btn btn-primary">
+            <i class="fas fa-plus ml-2" aria-hidden="true"></i>
+            ثبت سوال جدید
+        </a>
+    </section>
+</div>
+{% endblock %}

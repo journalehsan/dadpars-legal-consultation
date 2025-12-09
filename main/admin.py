@@ -1,5 +1,15 @@
 from django.contrib import admin
-from .models import FAQ, ConsultationRequest, ConsultationResponse, SiteContent, Service
+
+from .models import (
+    FAQ,
+    ConsultationRequest,
+    ConsultationResponse,
+    ConsultationType,
+    LawyerAnswer,
+    RecentQuestion,
+    Service,
+    SiteContent,
+)
 
 
 @admin.register(FAQ)
@@ -91,3 +101,65 @@ class ConsultationResponseAdmin(admin.ModelAdmin):
         ),
         ("تاریخ", {"fields": ("response_date",), "classes": ("collapse",)}),
     )
+
+
+@admin.register(ConsultationType)
+class ConsultationTypeAdmin(admin.ModelAdmin):
+    list_display = ["title", "type_key", "order", "is_active", "created_at"]
+    list_filter = ["type_key", "is_active", "created_at"]
+    search_fields = ["title", "description"]
+    list_editable = ["order", "is_active"]
+    ordering = ["order", "created_at"]
+
+    fieldsets = (
+        ("اطلاعات اصلی", {"fields": ("type_key", "title", "description")}),
+        ("ظاهر", {"fields": ("icon", "button_text", "button_url", "button_color")}),
+        ("ویژگی‌ها", {"fields": ("features",)}),
+        ("تنظیمات", {"fields": ("order", "is_active")}),
+    )
+
+
+@admin.register(RecentQuestion)
+class RecentQuestionAdmin(admin.ModelAdmin):
+    list_display = [
+        "question_short",
+        "category",
+        "is_answered",
+        "is_active",
+        "order",
+        "created_at",
+    ]
+    list_filter = ["category", "is_answered", "is_active", "created_at"]
+    search_fields = ["question", "description", "questioner_name"]
+    list_editable = ["order", "is_answered", "is_active"]
+    ordering = ["order", "-created_at"]
+
+    def question_short(self, obj):
+        return obj.question[:50] + "..." if len(obj.question) > 50 else obj.question
+
+    question_short.short_description = "سوال"
+
+
+@admin.register(LawyerAnswer)
+class LawyerAnswerAdmin(admin.ModelAdmin):
+    list_display = [
+        "question_short",
+        "lawyer",
+        "lawyer_title",
+        "order",
+        "is_active",
+        "created_at",
+    ]
+    list_filter = ["is_active", "created_at", "lawyer"]
+    search_fields = ["question__question", "answer", "short_answer", "lawyer__username"]
+    list_editable = ["order", "is_active"]
+    ordering = ["order", "-created_at"]
+
+    def question_short(self, obj):
+        return (
+            obj.question.question[:50] + "..."
+            if len(obj.question.question) > 50
+            else obj.question.question
+        )
+
+    question_short.short_description = "سوال"
