@@ -27,4 +27,25 @@ urlpatterns = [
         views.QuestionDetailView.as_view(),
         name="question_detail",
     ),
+    # New consultation pages
+    path(
+        "24-hours-legal-consultation/",
+        views.TwentyFourHoursConsultationView.as_view(),
+        name="24_hours_consultation",
+    ),
+    path(
+        "phone-legal-consultation/",
+        views.PhoneConsultationView.as_view(),
+        name="phone_consultation",
+    ),
+    path(
+        "in-person-legal-consultation/",
+        views.InPersonConsultationView.as_view(),
+        name="in_person_consultation",
+    ),
+    path(
+        "quick-legal-advice/",
+        views.QuickLegalAdviceView.as_view(),
+        name="quick_legal_advice",
+    ),
 ]

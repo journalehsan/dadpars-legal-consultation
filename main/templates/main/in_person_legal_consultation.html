@@ -1,0 +1,635 @@
+{% extends "main/base.html" %}
+
+{% block title %}مشاوره حقوقی حضوری با وکیل پایه یک | مرکز مشاوره عدل‌بان{% endblock %}
+
+{% block extra_css %}
+<style>
+    .benefit-card {
+        transition: all 0.3s ease;
+    }
+    
+    .benefit-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+    
+    .process-step {
+        position: relative;
+    }
+    
+    .process-step:not(:last-child)::after {
+        content: '';
+        position: absolute;
+        top: 40px;
+        right: 50%;
+        width: 2px;
+        height: 60px;
+        background: linear-gradient(to bottom, var(--color-primary), transparent);
+    }
+    
+    .faq-item {
+        transition: all 0.3s ease;
+    }
+    
+    .faq-item:hover {
+        background-color: rgba(79, 70, 229, 0.05);
+    }
+    
+    .testimonial-card {
+        transition: all 0.3s ease;
+    }
+    
+    .testimonial-card:hover {
+        transform: scale(1.02);
+    }
+    
+    .location-card {
+        transition: all 0.3s ease;
+    }
+    
+    .location-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+    
+    @media (max-width: 768px) {
+        .process-step:not(:last-child)::after {
+            right: 20px;
+            height: 40px;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block breadcrumb %}
+<div class="bg-gray-100 dark:bg-gray-800 py-4">
+    <div class="container mx-auto px-4">
+        <nav class="flex" aria-label="Breadcrumb">
+            <ol class="inline-flex items-center space-x-1 md:space-x-3 space-x-reverse">
+                <li class="inline-flex items-center">
+                    <a href="{% url 'main:home' %}" class="text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white">
+                        <i class="fas fa-home ml-2"></i>
+                        خانه
+                    </a>
+                </li>
+                <li>
+                    <div class="flex items-center">
+                        <i class="fas fa-chevron-left text-gray-400 mx-2"></i>
+                        <span class="text-gray-500 dark:text-gray-400">مشاوره حقوقی</span>
+                    </div>
+                </li>
+                <li aria-current="page">
+                    <div class="flex items-center">
+                        <i class="fas fa-chevron-left text-gray-400 mx-2"></i>
+                        <span class="text-gray-500 dark:text-gray-400">مشاوره حضوری</span>
+                    </div>
+                </li>
+            </ol>
+        </nav>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<!-- Schema.org structured data for SEO -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "مشاوره حقوقی حضوری با وکیل پایه یک",
+    "description": "ارائه مشاوره حقوقی حضوری با وکلای پایه یک دادگستری در دفتر مرکزی تهران",
+    "provider": {
+        "@type": "Organization",
+        "name": "مرکز مشاوره عدل‌بان",
+        "url": "https://adlpors.ir"
+    },
+    "serviceType": "Legal Services",
+    "areaServed": "IR",
+    "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "IR",
+        "addressLocality": "تهران",
+        "streetAddress": "جردن، بالاتر از جهان کودک، برج امیر پرویز طبقه ششم"
+    },
+    "availableChannel": {
+        "@type": "ServiceChannel",
+        "servicePhone": "+98-912-941-3828",
+        "serviceUrl": "https://adlpors.ir"
+    }
+}
+</script>
+
+<!-- Hero Section -->
+<section class="bg-gradient-to-br from-primary-600 to-purple-700 text-white py-20">
+    <div class="container mx-auto px-4">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div class="animate-fade-in-up">
+                <h1 class="text-4xl md:text-5xl font-bold mb-6">
+                    مشاوره حقوقی حضوری با وکیل پایه یک
+                </h1>
+                <p class="text-xl mb-8 text-blue-100">
+                    مرکز تخصصی مشاوره حقوقی عدل‌بان، ارائه خدمات مشاوره حضوری با وکلای پایه یک دادگستری در دفتر مرکزی تهران
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="tel:09129413828" class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 hover:shadow-lg flex items-center justify-center">
+                        <i class="fas fa-phone ml-2 animate-pulse"></i>
+                        تماس فوری: ۰۹۱۲۹۴۱۳۸۲۸
+                    </a>
+                    <a href="{% url 'main:consultation_request' %}" class="bg-white text-primary-600 hover:bg-gray-100 font-bold py-3 px-6 rounded-lg transition-all duration-300 hover:shadow-lg flex items-center justify-center">
+                        <i class="fas fa-calendar-check ml-2"></i>
+                        رزرو مشاوره حضوری
+                    </a>
+                </div>
+            </div>
+            <div class="animate-fade-in-up animation-delay-200">
+                <div class="relative">
+                    <div class="w-full h-64 md:h-80 bg-white/10 backdrop-blur-sm rounded-2xl flex items-center justify-center">
+                        <i class="fas fa-building text-6xl md:text-8xl text-white/80"></i>
+                    </div>
+                    <div class="absolute -top-4 -right-4 bg-green-500 text-white px-4 py-2 rounded-full font-bold animate-bounce">
+                        حضوری
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Benefits Section -->
+<section class="py-16 bg-gray-50 dark:bg-gray-800">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white">
+                مزایای مشاوره حقوقی حضوری
+            </h2>
+            <p class="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                مشاوره حضوری یکی از بهترین روش‌های دریافت راهنمایی حقوقی است. در ادامه با مزایای این نوع مشاوره بیشتر آشنا شوید.
+            </p>
+        </div>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="benefit-card bg-white dark:bg-gray-700 p-6 rounded-xl shadow-lg">
+                <div class="text-primary-600 dark:text-primary-400 text-3xl mb-4">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">ارتباط چهره به چهره</h3>
+                <p class="text-gray-600 dark:text-gray-300">
+                    ارتباط مستقیم و چهره به چهره با وکیل متخصص باعث درک بهتر موضوع می‌شود.
+                </p>
+            </div>
+            
+            <div class="benefit-card bg-white dark:bg-gray-700 p-6 rounded-xl shadow-lg">
+                <div class="text-primary-600 dark:text-primary-400 text-3xl mb-4">
+                    <i class="fas fa-file-alt"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">بررسی اسناد و مدارک</h3>
+                <p class="text-gray-600 dark:text-gray-300">
+                    امکان بررسی دقیق اسناد، مدارک و قراردادها در جلسه حضوری فراهم است.
+                </p>
+            </div>
+            
+            <div class="benefit-card bg-white dark:bg-gray-700 p-6 rounded-xl shadow-lg">
+                <div class="text-primary-600 dark:text-primary-400 text-3xl mb-4">
+                    <i class="fas fa-comments"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">بحث و گفتگوی عمیق</h3>
+                <p class="text-gray-600 dark:text-gray-300">
+                    امکان بحث و گفتگوی کامل و عمیق در مورد تمام جنبه‌های پرونده.
+                </p>
+            </div>
+            
+            <div class="benefit-card bg-white dark:bg-gray-700 p-6 rounded-xl shadow-lg">
+                <div class="text-primary-600 dark:text-primary-400 text-3xl mb-4">
+                    <i class="fas fa-handshake"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">اعتمادسازی</h3>
+                <p class="text-gray-600 dark:text-gray-300">
+                    جلسه حضوری باعث ایجاد اعتماد بیشتر بین وکیل و موکل می‌شود.
+                </p>
+            </div>
+            
+            <div class="benefit-card bg-white dark:bg-gray-700 p-6 rounded-xl shadow-lg">
+                <div class="text-primary-600 dark:text-primary-400 text-3xl mb-4">
+                    <i class="fas fa-clipboard-check"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">تنظیم قرارداد</h3>
+                <p class="text-gray-600 dark:text-gray-300">
+                    امکان تنظیم قرارداد وکالت در محل و با حضور طرفین فراهم است.
+                </p>
+            </div>
+            
+            <div class="benefit-card bg-white dark:bg-gray-700 p-6 rounded-xl shadow-lg">
+                <div class="text-primary-600 dark:text-primary-400 text-3xl mb-4">
+                    <i class="fas fa-gavel"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">نمایش مدارک</h3>
+                <p class="text-gray-600 dark:text-gray-300">
+                    امکان نمایش فیزیکی مدارک و اسناد به وکیل برای بررسی دقیق‌تر.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Process Section -->
+<section class="py-16 bg-white dark:bg-gray-900">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white">
+                فرآیند دریافت مشاوره حضوری
+            </h2>
+            <p class="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                دریافت مشاوره حضوری در مرکز عدل‌بان بسیار ساده و منظم است. در ادامه با مراحل این فرآیند آشنا شوید.
+            </p>
+        </div>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="process-step text-center">
+                <div class="bg-primary-600 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">
+                    ۱
+                </div>
+                <h3 class="text-lg font-semibold mb-2 text-gray-900 dark:text-white">تماس و رزرو</h3>
+                <p class="text-gray-600 dark:text-gray-300">
+                    با شماره ۰۹۱۲۹۴۱۳۸۲۸ تماس گرفته و وقت مشاوره حضوری خود را رزرو کنید.
+                </p>
+            </div>
+            
+            <div class="process-step text-center">
+                <div class="bg-primary-600 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">
+                    ۲
+                </div>
+                <h3 class="text-lg font-semibold mb-2 text-gray-900 dark:text-white">تکمیل اطلاعات</h3>
+                <p class="text-gray-600 dark:text-gray-300">
+                    اطلاعات اولیه خود را ثبت کرده و موضوع مشاوره را مشخص کنید.
+                </p>
+            </div>
+            
+            <div class="process-step text-center">
+                <div class="bg-primary-600 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">
+                    ۳
+                </div>
+                <h3 class="text-lg font-semibold mb-2 text-gray-900 dark:text-white">مراجعه حضوری</h3>
+                <p class="text-gray-600 dark:text-gray-300">
+                    در زمان مقرر به دفتر مرکزی مراجعه کرده و مدارک خود را به همراه داشته باشید.
+                </p>
+            </div>
+            
+            <div class="process-step text-center">
+                <div class="bg-primary-600 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">
+                    ۴
+                </div>
+                <h3 class="text-lg font-semibold mb-2 text-gray-900 dark:text-white">دریافت مشاوره</h3>
+                <p class="text-gray-600 dark:text-gray-300">
+                    با وکیل متخصص جلسه داشته و راهنمایی کامل دریافت کنید.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Location Section -->
+<section class="py-16 bg-gray-50 dark:bg-gray-800">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white">
+                آدرس و موقعیت دفتر مرکزی
+            </h2>
+            <p class="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                دفتر مرکزی مرکز مشاوره عدل‌بان در بهترین نقطه شهر تهران قرار دارد و دسترسی آسانی دارد.
+            </p>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-8">
+            <div class="location-card bg-white dark:bg-gray-700 p-6 rounded-xl shadow-lg">
+                <div class="text-primary-600 dark:text-primary-400 text-3xl mb-4">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white">آدرس دقیق</h3>
+                <p class="text-gray-600 dark:text-gray-300 mb-4">
+                    تهران، جردن، بالاتر از جهان کودک، برج امیر پرویز طبقه ششم
+                </p>
+                <div class="space-y-2">
+                    <div class="flex items-center text-gray-600 dark:text-gray-300">
+                        <i class="fas fa-subway ml-3 text-primary-600 dark:text-primary-400"></i>
+                        <span>ایستگاه مترو جردن (فاصله ۵ دقیقه پیاده)</span>
+                    </div>
+                    <div class="flex items-center text-gray-600 dark:text-gray-300">
+                        <i class="fas fa-bus ml-3 text-primary-600 dark:text-primary-400"></i>
+                        <span>اتوبوس‌های خطوط جردن و ولیعصر</span>
+                    </div>
+                    <div class="flex items-center text-gray-600 dark:text-gray-300">
+                        <i class="fas fa-car ml-3 text-primary-600 dark:text-primary-400"></i>
+                        <span>پارکینگ عمومی در نزدیکی برج</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="location-card bg-white dark:bg-gray-700 p-6 rounded-xl shadow-lg">
+                <div class="text-primary-600 dark:text-primary-400 text-3xl mb-4">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-4 text-gray-900 dark:text-white">ساعات کاری</h3>
+                <div class="space-y-2 text-gray-600 dark:text-gray-300">
+                    <div class="flex justify-between">
+                        <span>شنبه تا چهارشنبه:</span>
+                        <span class="font-semibold">۹:۰۰ تا ۱۸:۰۰</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>پنج‌شنبه:</span>
+                        <span class="font-semibold">۹:۰۰ تا ۱۶:۰۰</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>جمعه و تعطیلات رسمی:</span>
+                        <span class="font-semibold">تعطیل</span>
+                    </div>
+                </div>
+                <div class="mt-4 p-3 bg-yellow-50 dark:bg-yellow-900/20 rounded-lg">
+                    <p class="text-sm text-yellow-800 dark:text-yellow-200">
+                        <i class="fas fa-info-circle ml-2"></i>
+                        برای مشاوره در روزهای تعطیل، لطفاً هماهنگی کنید.
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Map Placeholder -->
+        <div class="mt-12 bg-white dark:bg-gray-700 rounded-xl shadow-lg overflow-hidden">
+            <div class="bg-gray-200 dark:bg-gray-600 h-64 flex items-center justify-center">
+                <div class="text-center">
+                    <i class="fas fa-map-marked-alt text-6xl text-gray-400 dark:text-gray-500 mb-4"></i>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        نقشه گوگل در اینجا نمایش داده خواهد شد
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section class="py-16 bg-white dark:bg-gray-900">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white">
+                زمینه‌های مشاوره حضوری
+            </h2>
+            <p class="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                وکلای متخصص ما در تمام زمینه‌های حقوقی آماده ارائه مشاوره حضوری به شما عزیزان هستند.
+            </p>
+        </div>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+                <div class="text-primary-600 dark:text-primary-400 text-3xl mb-4">
+                    <i class="fas fa-home"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">حقوق خانواده</h3>
+                <p class="text-gray-600 dark:text-gray-300">
+                    مشاوره حضوری در زمینه طلاق، حضانت، مهریه، نفقه و سایر مسائل خانوادگی
+                </p>
+            </div>
+            
+            <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+                <div class="text-primary-600 dark:text-primary-400 text-3xl mb-4">
+                    <i class="fas fa-briefcase"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">حقوق کار و کارگر</h3>
+                <p class="text-gray-600 dark:text-gray-300">
+                    مشاوره حضوری در زمینه قرارداد کار، بیمه، بازنشستگی و مسائل کارگری
+                </p>
+            </div>
+            
+            <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+                <div class="text-primary-600 dark:text-primary-400 text-3xl mb-4">
+                    <i class="fas fa-building"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">حقوق ملکی</h3>
+                <p class="text-gray-600 dark:text-gray-300">
+                    مشاوره حضوری در زمینه خرید و فروش، اجاره، رهن و سایر مسائل املاک
+                </p>
+            </div>
+            
+            <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+                <div class="text-primary-600 dark:text-primary-400 text-3xl mb-4">
+                    <i class="fas fa-handshake"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">حقوق تجارت</h3>
+                <p class="text-gray-600 dark:text-gray-300">
+                    مشاوره حضوری در زمینه شرکت‌ها، قراردادهای تجاری و مسائل کسب و کار
+                </p>
+            </div>
+            
+            <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+                <div class="text-primary-600 dark:text-primary-400 text-3xl mb-4">
+                    <i class="fas fa-gavel"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">حقوق کیفری</h3>
+                <p class="text-gray-600 dark:text-gray-300">
+                    مشاوره حضوری در زمینه جرائم، مجازات‌ها و دفاع از متهمین
+                </p>
+            </div>
+            
+            <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
+                <div class="text-primary-600 dark:text-primary-400 text-3xl mb-4">
+                    <i class="fas fa-file-contract"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">حقوق قراردادها</h3>
+                <p class="text-gray-600 dark:text-gray-300">
+                    مشاوره حضوری در زمینه تنظیم، بررسی و اجرای انواع قراردادها
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="py-16 bg-gray-50 dark:bg-gray-800">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white">
+                سوالات متداول مشاوره حضوری
+            </h2>
+            <p class="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                در ادامه به سوالات متداول شما در زمینه مشاوره حقوقی حضوری پاسخ می‌دهیم.
+            </p>
+        </div>
+        
+        <div class="max-w-3xl mx-auto space-y-4">
+            <div class="faq-item bg-white dark:bg-gray-700 p-6 rounded-lg shadow">
+                <button class="faq-question w-full text-right flex justify-between items-center font-semibold text-lg text-gray-900 dark:text-white">
+                    آیا نیاز به رزرو وقت قبلی برای مشاوره حضوری دارم؟
+                    <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                </button>
+                <div class="faq-answer hidden mt-4 text-gray-600 dark:text-gray-300">
+                    بله، برای مشاوره حضوری حتماً نیاز به رزرو وقت قبلی دارید. شما می‌توانید با شماره ۰۹۱۲۹۴۱۳۸۲۸ تماس گرفته و وقت مشاوره خود را رزرو کنید.
+                </div>
+            </div>
+            
+            <div class="faq-item bg-white dark:bg-gray-700 p-6 rounded-lg shadow">
+                <button class="faq-question w-full text-right flex justify-between items-center font-semibold text-lg text-gray-900 dark:text-white">
+                    هزینه مشاوره حضوری چقدر است؟
+                    <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                </button>
+                <div class="faq-answer hidden mt-4 text-gray-600 dark:text-gray-300">
+                    هزینه مشاوره حضوری بسته به نوع مشکل و زمان مورد نیاز برای مشاوره متفاوت است. برای اطلاع از هزینه دقیق، می‌توانید با کارشناسان ما تماس گرفته و پس از ارائه موضوع مشاوره، از هزینه مطلع شوید.
+                </div>
+            </div>
+            
+            <div class="faq-item bg-white dark:bg-gray-700 p-6 rounded-lg shadow">
+                <button class="faq-question w-full text-right flex justify-between items-center font-semibold text-lg text-gray-900 dark:text-white">
+                    چه مدارکی باید به همراه داشته باشم؟
+                    <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                </button>
+                <div class="faq-answer hidden mt-4 text-gray-600 dark:text-gray-300">
+                    بسته به نوع مشکل، مدارک مورد نیاز متفاوت است. به طور کلی، به همراه داشتن کارت ملی، مدارک هویتی، و هرگونه سند یا قرارداد مرتبط با پرونده ضروری است. کارشناسان ما هنگام رزرو وقت، مدارک لازم را به شما اطلاع خواهند داد.
+                </div>
+            </div>
+            
+            <div class="faq-item bg-white dark:bg-gray-700 p-6 rounded-lg shadow">
+                <button class="faq-question w-full text-right flex justify-between items-center font-semibold text-lg text-gray-900 dark:text-white">
+                    آیا امکان مشاوره در خارج از ساعات کاری وجود دارد؟
+                    <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                </button>
+                <div class="faq-answer hidden mt-4 text-gray-600 dark:text-gray-300">
+                    بله، در موارد ضروری و با هماهنگی قبلی، امکان مشاوره در خارج از ساعات کاری نیز وجود دارد. برای این منظور، لطفاً با شماره تماس ما ارتباط برقرار کنید.
+                </div>
+            </div>
+            
+            <div class="faq-item bg-white dark:bg-gray-700 p-6 rounded-lg shadow">
+                <button class="faq-question w-full text-right flex justify-between items-center font-semibold text-lg text-gray-900 dark:text-white">
+                    آیا امکان مشاوره با وکیل زن وجود دارد؟
+                    <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                </button>
+                <div class="faq-answer hidden mt-4 text-gray-600 dark:text-gray-300">
+                    بله، در مرکز مشاوره عدل‌بان وکلای زن متخصص نیز فعالیت دارند و شما می‌توانید درخواست مشاوره با وکیل زن را داشته باشید.
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="py-16 bg-white dark:bg-gray-900">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white">
+                تجربه مشتریان ما
+            </h2>
+            <p class="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                مشتریان ما از خدمات مشاوره حضوری رضایت کامل داشته‌اند. در ادامه نظرات برخی از آن‌ها را مشاهده کنید.
+            </p>
+        </div>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="testimonial-card bg-gray-50 dark:bg-gray-700 p-6 rounded-xl shadow-lg">
+                <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900 rounded-full flex items-center justify-center ml-4">
+                        <i class="fas fa-user text-primary-600 dark:text-primary-400"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-gray-900 dark:text-white">آقای حسینی</h4>
+                        <div class="text-yellow-500">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-gray-600 dark:text-gray-300">
+                    "جلسه مشاوره حضوری که با وکیل متخصص داشتم بسیار مفید بود. با دقت به مدارک من گوش داد و راهکارهای عملی ارائه کرد."
+                </p>
+            </div>
+            
+            <div class="testimonial-card bg-gray-50 dark:bg-gray-700 p-6 rounded-xl shadow-lg">
+                <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900 rounded-full flex items-center justify-center ml-4">
+                        <i class="fas fa-user text-primary-600 dark:text-primary-400"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-gray-900 dark:text-white">خانم صالحی</h4>
+                        <div class="text-yellow-500">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-gray-600 dark:text-gray-300">
+                    "دفتر مرکزی بسیار دسترسی خوبی دارد و محیطی حرفه‌ای و آرام دارد. مشاوره حضوری باعث شد به نتیجه مطلوبی برسم."
+                </p>
+            </div>
+            
+            <div class="testimonial-card bg-gray-50 dark:bg-gray-700 p-6 rounded-xl shadow-lg">
+                <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900 rounded-full flex items-center justify-center ml-4">
+                        <i class="fas fa-user text-primary-600 dark:text-primary-400"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-gray-900 dark:text-white">آقای کرمی</h4>
+                        <div class="text-yellow-500">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-gray-600 dark:text-gray-300">
+                    "مشاوره حضوری باعث شد تمام مدارکم به درستی بررسی شود و راه حل مناسبی برای مشکل حقوقی‌ام پیدا کنم."
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="bg-gradient-to-r from-primary-600 to-purple-700 text-white py-16">
+    <div class="container mx-auto px-4 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6">
+            آماده ارائه خدمات مشاوره حضوری به شما هستیم
+        </h2>
+        <p class="text-xl mb-8 text-blue-100">
+            همین امروز با وکلای متخصص ما جلسه حضوری داشته و راه حل مشکلات حقوقی خود را پیدا کنید
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="tel:09129413828" class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 hover:shadow-lg flex items-center justify-center">
+                <i class="fas fa-phone ml-2 animate-pulse"></i>
+                تماس فوری: ۰۹۱۲۹۴۱۳۸۲۸
+            </a>
+            <a href="{% url 'main:consultation_request' %}" class="bg-white text-primary-600 hover:bg-gray-100 font-bold py-3 px-8 rounded-lg transition-all duration-300 hover:shadow-lg flex items-center justify-center">
+                <i class="fas fa-calendar-check ml-2"></i>
+                رزرو مشاوره حضوری
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // FAQ Accordion
+    document.querySelectorAll('.faq-question').forEach(button => {
+        button.addEventListener('click', () => {
+            const answer = button.nextElementSibling;
+            const icon = button.querySelector('i');
+            
+            // Close other open FAQs
+            document.querySelectorAll('.faq-answer').forEach(otherAnswer => {
+                if (otherAnswer !== answer) {
+                    otherAnswer.classList.add('hidden');
+                    otherAnswer.previousElementSibling.querySelector('i').classList.remove('rotate-180');
+                }
+            });
+            
+            // Toggle current FAQ
+            answer.classList.toggle('hidden');
+            icon.classList.toggle('rotate-180');
+        });
+    });
+</script>
+{% endblock %}

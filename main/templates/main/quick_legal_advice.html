@@ -1,0 +1,616 @@
+{% extends "main/base.html" %}
+
+{% block title %}مشاوره حقوقی فوری و سریع | مرکز مشاوره عدل‌بان{% endblock %}
+
+{% block extra_css %}
+<style>
+    .benefit-card {
+        transition: all 0.3s ease;
+    }
+    
+    .benefit-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+    
+    .process-step {
+        position: relative;
+    }
+    
+    .process-step:not(:last-child)::after {
+        content: '';
+        position: absolute;
+        top: 40px;
+        right: 50%;
+        width: 2px;
+        height: 60px;
+        background: linear-gradient(to bottom, var(--color-primary), transparent);
+    }
+    
+    .faq-item {
+        transition: all 0.3s ease;
+    }
+    
+    .faq-item:hover {
+        background-color: rgba(79, 70, 229, 0.05);
+    }
+    
+    .testimonial-card {
+        transition: all 0.3s ease;
+    }
+    
+    .testimonial-card:hover {
+        transform: scale(1.02);
+    }
+    
+    .advice-category {
+        transition: all 0.3s ease;
+    }
+    
+    .advice-category:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+    
+    @media (max-width: 768px) {
+        .process-step:not(:last-child)::after {
+            right: 20px;
+            height: 40px;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block breadcrumb %}
+<div class="bg-gray-100 dark:bg-gray-800 py-4">
+    <div class="container mx-auto px-4">
+        <nav class="flex" aria-label="Breadcrumb">
+            <ol class="inline-flex items-center space-x-1 md:space-x-3 space-x-reverse">
+                <li class="inline-flex items-center">
+                    <a href="{% url 'main:home' %}" class="text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white">
+                        <i class="fas fa-home ml-2"></i>
+                        خانه
+                    </a>
+                </li>
+                <li>
+                    <div class="flex items-center">
+                        <i class="fas fa-chevron-left text-gray-400 mx-2"></i>
+                        <span class="text-gray-500 dark:text-gray-400">مشاوره حقوقی</span>
+                    </div>
+                </li>
+                <li aria-current="page">
+                    <div class="flex items-center">
+                        <i class="fas fa-chevron-left text-gray-400 mx-2"></i>
+                        <span class="text-gray-500 dark:text-gray-400">مشاوره فوری</span>
+                    </div>
+                </li>
+            </ol>
+        </nav>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<!-- Schema.org structured data for SEO -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "مشاوره حقوقی فوری و سریع",
+    "description": "ارائه مشاوره حقوقی فوری و سریع با وکلای پایه یک دادگستری در تمام زمینه‌های حقوقی",
+    "provider": {
+        "@type": "Organization",
+        "name": "مرکز مشاوره عدل‌بان",
+        "url": "https://adlpors.ir"
+    },
+    "serviceType": "Legal Services",
+    "areaServed": "IR",
+    "availableChannel": {
+        "@type": "ServiceChannel",
+        "servicePhone": "+98-912-941-3828",
+        "serviceUrl": "https://adlpors.ir"
+    }
+}
+</script>
+
+<!-- Hero Section -->
+<section class="bg-gradient-to-br from-primary-600 to-purple-700 text-white py-20">
+    <div class="container mx-auto px-4">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div class="animate-fade-in-up">
+                <h1 class="text-4xl md:text-5xl font-bold mb-6">
+                    مشاوره حقوقی فوری و سریع
+                </h1>
+                <p class="text-xl mb-8 text-blue-100">
+                    مرکز تخصصی مشاوره حقوقی عدل‌بان، ارائه خدمات مشاوره فوری و سریع با وکلای پایه یک دادگستری در تمام زمینه‌های حقوقی
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <a href="tel:09129413828" class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 hover:shadow-lg flex items-center justify-center">
+                        <i class="fas fa-phone ml-2 animate-pulse"></i>
+                        تماس فوری: ۰۹۱۲۹۴۱۳۸۲۸
+                    </a>
+                    <a href="{% url 'main:consultation_request' %}" class="bg-white text-primary-600 hover:bg-gray-100 font-bold py-3 px-6 rounded-lg transition-all duration-300 hover:shadow-lg flex items-center justify-center">
+                        <i class="fas fa-bolt ml-2"></i>
+                        مشاوره فوری آنلاین
+                    </a>
+                </div>
+            </div>
+            <div class="animate-fade-in-up animation-delay-200">
+                <div class="relative">
+                    <div class="w-full h-64 md:h-80 bg-white/10 backdrop-blur-sm rounded-2xl flex items-center justify-center">
+                        <i class="fas fa-bolt text-6xl md:text-8xl text-white/80"></i>
+                    </div>
+                    <div class="absolute -top-4 -right-4 bg-green-500 text-white px-4 py-2 rounded-full font-bold animate-bounce">
+                        فوری
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Benefits Section -->
+<section class="py-16 bg-gray-50 dark:bg-gray-800">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white">
+                مزایای مشاوره حقوقی فوری
+            </h2>
+            <p class="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                مشاوره فوری یکی از سریع‌ترین روش‌های دریافت راهنمایی حقوقی است. در ادامه با مزایای این نوع مشاوره بیشتر آشنا شوید.
+            </p>
+        </div>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="benefit-card bg-white dark:bg-gray-700 p-6 rounded-xl shadow-lg">
+                <div class="text-primary-600 dark:text-primary-400 text-3xl mb-4">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">پاسخگویی آنی</h3>
+                <p class="text-gray-600 dark:text-gray-300">
+                    بدون انتظار طولانی، در کمترین زمان ممکن به وکیل متخصص متصل شوید.
+                </p>
+            </div>
+            
+            <div class="benefit-card bg-white dark:bg-gray-700 p-6 rounded-xl shadow-lg">
+                <div class="text-primary-600 dark:text-primary-400 text-3xl mb-4">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">صرفه‌جویی در زمان</h3>
+                <p class="text-gray-600 dark:text-gray-300">
+                    در مواقع اضطراری که زمان اهمیت زیادی دارد، مشاوره فوری بهترین گزینه است.
+                </p>
+            </div>
+            
+            <div class="benefit-card bg-white dark:bg-gray-700 p-6 rounded-xl shadow-lg">
+                <div class="text-primary-600 dark:text-primary-400 text-3xl mb-4">
+                    <i class="fas fa-phone-alt"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">دسترسی آسان</h3>
+                <p class="text-gray-600 dark:text-gray-300">
+                    با یک تماس ساده، در هر مکان و زمانی به مشاوره حقوقی دسترسی داشته باشید.
+                </p>
+            </div>
+            
+            <div class="benefit-card bg-white dark:bg-gray-700 p-6 rounded-xl shadow-lg">
+                <div class="text-primary-600 dark:text-primary-400 text-3xl mb-4">
+                    <i class="fas fa-gavel"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">وکلای آماده به کار</h3>
+                <p class="text-gray-600 dark:text-gray-300">
+                    تیمی از وکلای پایه یک همیشه آماده ارائه خدمات مشاوره فوری هستند.
+                </p>
+            </div>
+            
+            <div class="benefit-card bg-white dark:bg-gray-700 p-6 rounded-xl shadow-lg">
+                <div class="text-primary-600 dark:text-primary-400 text-3xl mb-4">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">حفظ حریم خصوصی</h3>
+                <p class="text-gray-600 dark:text-gray-300">
+                    تمام اطلاعات شما با رعایت کامل اصول محرمانگی نگهداری می‌شود.
+                </p>
+            </div>
+            
+            <div class="benefit-card bg-white dark:bg-gray-700 p-6 rounded-xl shadow-lg">
+                <div class="text-primary-600 dark:text-primary-400 text-3xl mb-4">
+                    <i class="fas fa-dollar-sign"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">هزینه مناسب</h3>
+                <p class="text-gray-600 dark:text-gray-300">
+                    مشاوره فوری با هزینه مناسب و شفاف ارائه می‌شود.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Process Section -->
+<section class="py-16 bg-white dark:bg-gray-900">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white">
+                فرآیند دریافت مشاوره فوری
+            </h2>
+            <p class="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                دریافت مشاوره فوری در مرکز عدل‌بان بسیار ساده و سریع است. در ادامه با مراحل این فرآیند آشنا شوید.
+            </p>
+        </div>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="process-step text-center">
+                <div class="bg-primary-600 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">
+                    ۱
+                </div>
+                <h3 class="text-lg font-semibold mb-2 text-gray-900 dark:text-white">تماس فوری</h3>
+                <p class="text-gray-600 dark:text-gray-300">
+                    با شماره ۰۹۱۲۹۴۱۳۸۲۸ تماس گرفته و درخواست مشاوره فوری خود را ثبت کنید.
+                </p>
+            </div>
+            
+            <div class="process-step text-center">
+                <div class="bg-primary-600 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">
+                    ۲
+                </div>
+                <h3 class="text-lg font-semibold mb-2 text-gray-900 dark:text-white">توضیح مسئله</h3>
+                <p class="text-gray-600 dark:text-gray-300">
+                    مشکل حقوقی خود را به صورت خلاصه برای کارشناس ما توضیح دهید.
+                </p>
+            </div>
+            
+            <div class="process-step text-center">
+                <div class="bg-primary-600 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">
+                    ۳
+                </div>
+                <h3 class="text-lg font-semibold mb-2 text-gray-900 dark:text-white">اتصال به وکیل</h3>
+                <p class="text-gray-600 dark:text-gray-300">
+                    بلافاصله به وکیل متخصص در زمینه مورد نظر خود متصل می‌شوید.
+                </p>
+            </div>
+            
+            <div class="process-step text-center">
+                <div class="bg-primary-600 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">
+                    ۴
+                </div>
+                <h3 class="text-lg font-semibold mb-2 text-gray-900 dark:text-white">دریافت راهنمایی</h3>
+                <p class="text-gray-600 dark:text-gray-300">
+                    راهنمایی کامل و فوری برای حل مشکل حقوقی خود دریافت کنید.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Categories Section -->
+<section class="py-16 bg-gray-50 dark:bg-gray-800">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white">
+                زمینه‌های مشاوره فوری
+            </h2>
+            <p class="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                وکلای متخصص ما در تمام زمینه‌های حقوقی آماده ارائه مشاوره فوری به شما عزیزان هستند.
+            </p>
+        </div>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="advice-category bg-white dark:bg-gray-700 p-6 rounded-xl shadow-lg">
+                <div class="text-primary-600 dark:text-primary-400 text-3xl mb-4">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">موارد اضطراری</h3>
+                <p class="text-gray-600 dark:text-gray-300">
+                    بازداشت، احضار فوری، و سایر موارد حقوقی اضطراری که نیاز به اقدام فوری دارند
+                </p>
+            </div>
+            
+            <div class="advice-category bg-white dark:bg-gray-700 p-6 rounded-xl shadow-lg">
+                <div class="text-primary-600 dark:text-primary-400 text-3xl mb-4">
+                    <i class="fas fa-car-crash"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">تصادفات رانندگی</h3>
+                <p class="text-gray-600 dark:text-gray-300">
+                    راهنمایی فوری در مورد تصادفات رانندگی و اقدامات قانونی لازم
+                </p>
+            </div>
+            
+            <div class="advice-category bg-white dark:bg-gray-700 p-6 rounded-xl shadow-lg">
+                <div class="text-primary-600 dark:text-primary-400 text-3xl mb-4">
+                    <i class="fas fa-home"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">مسائل خانوادگی فوری</h3>
+                <p class="text-gray-600 dark:text-gray-300">
+                    مشاوره فوری در مسائل خانوادگی که نیاز به اقدام فوری دارند
+                </p>
+            </div>
+            
+            <div class="advice-category bg-white dark:bg-gray-700 p-6 rounded-xl shadow-lg">
+                <div class="text-primary-600 dark:text-primary-400 text-3xl mb-4">
+                    <i class="fas fa-briefcase"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">مسائل کاری فوری</h3>
+                <p class="text-gray-600 dark:text-gray-300">
+                    اخراج، مشکلات فوری قرارداد کار و سایر مسائل کاری اضطراری
+                </p>
+            </div>
+            
+            <div class="advice-category bg-white dark:bg-gray-700 p-6 rounded-xl shadow-lg">
+                <div class="text-primary-600 dark:text-primary-400 text-3xl mb-4">
+                    <i class="fas fa-building"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">مشکلات ملکی فوری</h3>
+                <p class="text-gray-600 dark:text-gray-300">
+                    تخلیه فوری، مشکلات مالکیت و سایر مسائل ملکی اضطراری
+                </p>
+            </div>
+            
+            <div class="advice-category bg-white dark:bg-gray-700 p-6 rounded-xl shadow-lg">
+                <div class="text-primary-600 dark:text-primary-400 text-3xl mb-4">
+                    <i class="fas fa-gavel"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-2 text-gray-900 dark:text-white">مسائل کیفری فوری</h3>
+                <p class="text-gray-600 dark:text-gray-300">
+                    جرائم فوری، احضار به دادسرا و سایر مسائل کیفری اضطراری
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- When to Use Section -->
+<section class="py-16 bg-white dark:bg-gray-900">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white">
+                چه زمانی از مشاوره فوری استفاده کنیم؟
+            </h2>
+            <p class="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                مشاوره فوری برای مواردی طراحی شده است که نیاز به پاسخگویی سریع و اقدام فوری دارند.
+            </p>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-8">
+            <div class="bg-red-50 dark:bg-red-900/20 p-6 rounded-xl border-2 border-red-200 dark:border-red-800">
+                <div class="text-red-600 dark:text-red-400 text-3xl mb-4">
+                    <i class="fas fa-exclamation-circle"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-4 text-red-800 dark:text-red-300">موارد اضطراری</h3>
+                <ul class="space-y-2 text-red-700 dark:text-red-200">
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle ml-2 mt-1"></i>
+                        <span>بازداشت یا تهدید به بازداشت</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle ml-2 mt-1"></i>
+                        <span>احضار فوری به دادگاه یا دادسرا</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle ml-2 mt-1"></i>
+                        <span>تصادفات رانندگی با مصدومیت</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle ml-2 mt-1"></i>
+                        <span>تخلیه فوری ملک مسکونی</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="bg-yellow-50 dark:bg-yellow-900/20 p-6 rounded-xl border-2 border-yellow-200 dark:border-yellow-800">
+                <div class="text-yellow-600 dark:text-yellow-400 text-3xl mb-4">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-4 text-yellow-800 dark:text-yellow-300">موارد نیازمند پاسخ سریع</h3>
+                <ul class="space-y-2 text-yellow-700 dark:text-yellow-200">
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle ml-2 mt-1"></i>
+                        <span>اخراج غیرقانونی از کار</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle ml-2 mt-1"></i>
+                        <span>مشکلات فوری قراردادها</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle ml-2 mt-1"></i>
+                        <span>مسائل حضانت و فرزندان</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check-circle ml-2 mt-1"></i>
+                        <span>مشکلات مالکیت فوری</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="py-16 bg-gray-50 dark:bg-gray-800">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white">
+                سوالات متداول مشاوره فوری
+            </h2>
+            <p class="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                در ادامه به سوالات متداول شما در زمینه مشاوره حقوقی فوری پاسخ می‌دهیم.
+            </p>
+        </div>
+        
+        <div class="max-w-3xl mx-auto space-y-4">
+            <div class="faq-item bg-white dark:bg-gray-700 p-6 rounded-lg shadow">
+                <button class="faq-question w-full text-right flex justify-between items-center font-semibold text-lg text-gray-900 dark:text-white">
+                    آیا مشاوره فوری در تمام ساعات پاسخگو است؟
+                    <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                </button>
+                <div class="faq-answer hidden mt-4 text-gray-600 dark:text-gray-300">
+                    بله، مرکز مشاوره عدل‌بان خدمات مشاوره فوری ۲۴ ساعته ارائه می‌دهد. شما می‌توانید در هر ساعت از شبانه‌روز با ما تماس گرفته و از خدمات مشاوره فوری استفاده کنید.
+                </div>
+            </div>
+            
+            <div class="faq-item bg-white dark:bg-gray-700 p-6 rounded-lg shadow">
+                <button class="faq-question w-full text-right flex justify-between items-center font-semibold text-lg text-gray-900 dark:text-white">
+                    هزینه مشاوره فوری چقدر است؟
+                    <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                </button>
+                <div class="faq-answer hidden mt-4 text-gray-600 dark:text-gray-300">
+                    هزینه مشاوره فوری بسته به نوع مشکل و زمان مشاوره متفاوت است. برای اطلاع از هزینه دقیق، می‌توانید با کارشناسان ما تماس گرفته و پس از ارائه موضوع مشاوره، از هزینه مطلع شوید.
+                </div>
+            </div>
+            
+            <div class="faq-item bg-white dark:bg-gray-700 p-6 rounded-lg shadow">
+                <button class="faq-question w-full text-right flex justify-between items-center font-semibold text-lg text-gray-900 dark:text-white">
+                    آیا مشاوره فوری به اندازه مشاوره حضوری مؤثر است؟
+                    <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                </button>
+                <div class="faq-answer hidden mt-4 text-gray-600 dark:text-gray-300">
+                    بله، مشاوره فوری در بسیاری از موارد به اندازه مشاوره حضوری مؤثر است، به خصوص برای مسائل حقوقی که نیاز به اقدام فوری دارند. وکلای ما با دقت کامل به موضوع شما گوش داده و راهکارهای مناسب ارائه می‌دهند.
+                </div>
+            </div>
+            
+            <div class="faq-item bg-white dark:bg-gray-700 p-6 rounded-lg shadow">
+                <button class="faq-question w-full text-right flex justify-between items-center font-semibold text-lg text-gray-900 dark:text-white">
+                    آیا امکان مشاوره فوری به صورت آنلاین نیز وجود دارد؟
+                    <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                </button>
+                <div class="faq-answer hidden mt-4 text-gray-600 dark:text-gray-300">
+                    بله، علاوه بر مشاوره تلفنی، امکان مشاوره فوری به صورت آنلاین از طریق ویدئو کنفرانس نیز وجود دارد. شما می‌توانید با کارشناسان ما هماهنگ کرده و از این خدمات استفاده کنید.
+                </div>
+            </div>
+            
+            <div class="faq-item bg-white dark:bg-gray-700 p-6 rounded-lg shadow">
+                <button class="faq-question w-full text-right flex justify-between items-center font-semibold text-lg text-gray-900 dark:text-white">
+                    آیا اطلاعات من محرمانه باقی می‌ماند؟
+                    <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                </button>
+                <div class="faq-answer hidden mt-4 text-gray-600 dark:text-gray-300">
+                    بله، تمام اطلاعات شما با رعایت کامل اصول محرمانگی و طبق قوانین حرفه‌ای وکالت نگهداری می‌شود. وکلای ما متعهد به حفظ اسرار وکیل و موکل هستند.
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="py-16 bg-white dark:bg-gray-900">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-900 dark:text-white">
+                تجربه مشتریان ما
+            </h2>
+            <p class="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                مشتریان ما از خدمات مشاوره فوری رضایت کامل داشته‌اند. در ادامه نظرات برخی از آن‌ها را مشاهده کنید.
+            </p>
+        </div>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="testimonial-card bg-gray-50 dark:bg-gray-700 p-6 rounded-xl shadow-lg">
+                <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900 rounded-full flex items-center justify-center ml-4">
+                        <i class="fas fa-user text-primary-600 dark:text-primary-400"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-gray-900 dark:text-white">آقای رضایی</h4>
+                        <div class="text-yellow-500">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-gray-600 dark:text-gray-300">
+                    "در یک مورد اضطراری با مرکز عدل‌بان تماس گرفتم و در کمتر از ۵ دقیقه به وکیل متخصص متصل شدم. بسیار متشکرم."
+                </p>
+            </div>
+            
+            <div class="testimonial-card bg-gray-50 dark:bg-gray-700 p-6 rounded-xl shadow-lg">
+                <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900 rounded-full flex items-center justify-center ml-4">
+                        <i class="fas fa-user text-primary-600 dark:text-primary-400"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-gray-900 dark:text-white">خانم احمدی</h4>
+                        <div class="text-yellow-500">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-gray-600 dark:text-gray-300">
+                    "تصادف کردم و نیاز به راهنمایی فوری داشتم. مشاوره فوری عدل‌بان بسیار مفید بود و مشکل من حل شد."
+                </p>
+            </div>
+            
+            <div class="testimonial-card bg-gray-50 dark:bg-gray-700 p-6 rounded-xl shadow-lg">
+                <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 bg-primary-100 dark:bg-primary-900 rounded-full flex items-center justify-center ml-4">
+                        <i class="fas fa-user text-primary-600 dark:text-primary-400"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-gray-900 dark:text-white">آقای محمدی</h4>
+                        <div class="text-yellow-500">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-gray-600 dark:text-gray-300">
+                    "خدمات مشاوره فوری عدل‌بان واقعاً بی‌نظیر است. در ساعت ۲ شب نیز وکیل متخصص پاسخگو بود و مشکل من حل شد."
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="bg-gradient-to-r from-primary-600 to-purple-700 text-white py-16">
+    <div class="container mx-auto px-4 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6">
+            آماده ارائه خدمات مشاوره فوری به شما هستیم
+        </h2>
+        <p class="text-xl mb-8 text-blue-100">
+            در هر زمان که با مشکل حقوقی اضطراری مواجه شدید، با ما تماس بگیرید
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="tel:09129413828" class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 hover:shadow-lg flex items-center justify-center">
+                <i class="fas fa-phone ml-2 animate-pulse"></i>
+                تماس فوری: ۰۹۱۲۹۴۱۳۸۲۸
+            </a>
+            <a href="{% url 'main:consultation_request' %}" class="bg-white text-primary-600 hover:bg-gray-100 font-bold py-3 px-8 rounded-lg transition-all duration-300 hover:shadow-lg flex items-center justify-center">
+                <i class="fas fa-bolt ml-2"></i>
+                مشاوره فوری آنلاین
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // FAQ Accordion
+    document.querySelectorAll('.faq-question').forEach(button => {
+        button.addEventListener('click', () => {
+            const answer = button.nextElementSibling;
+            const icon = button.querySelector('i');
+            
+            // Close other open FAQs
+            document.querySelectorAll('.faq-answer').forEach(otherAnswer => {
+                if (otherAnswer !== answer) {
+                    otherAnswer.classList.add('hidden');
+                    otherAnswer.previousElementSibling.querySelector('i').classList.remove('rotate-180');
+                }
+            });
+            
+            // Toggle current FAQ
+            answer.classList.toggle('hidden');
+            icon.classList.toggle('rotate-180');
+        });
+    });
+</script>
+{% endblock %}
