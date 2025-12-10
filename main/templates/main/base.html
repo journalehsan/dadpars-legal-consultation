@@ -561,7 +561,7 @@
                         >
                             <li role="none">
                                 <a
-                                    href="{% url 'main:consultation_request' %}"
+                                    href="{% url 'main:phone_consultation' %}"
                                     class="flex items-center gap-2 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-sm"
                                     role="menuitem"
                                 >
@@ -574,7 +574,7 @@
                             </li>
                             <li role="none">
                                 <a
-                                    href="{% url 'main:consultation_request' %}"
+                                    href="{% url 'main:24_hours_consultation' %}"
                                     class="flex items-center gap-2 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-sm"
                                     role="menuitem"
                                 >
@@ -583,6 +583,32 @@
                                         aria-hidden="true"
                                     ></i>
                                     <span>مشاوره حقوقی ۲۴ ساعته</span>
+                                </a>
+                            </li>
+                            <li role="none">
+                                <a
+                                    href="{% url 'main:in_person_consultation' %}"
+                                    class="flex items-center gap-2 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-sm"
+                                    role="menuitem"
+                                >
+                                    <i
+                                        class="fas fa-building text-primary-500"
+                                        aria-hidden="true"
+                                    ></i>
+                                    <span>مشاوره حقوقی حضوری</span>
+                                </a>
+                            </li>
+                            <li role="none">
+                                <a
+                                    href="{% url 'main:quick_legal_advice' %}"
+                                    class="flex items-center gap-2 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-sm"
+                                    role="menuitem"
+                                >
+                                    <i
+                                        class="fas fa-bolt text-primary-500"
+                                        aria-hidden="true"
+                                    ></i>
+                                    <span>مشاوره حقوقی فوری</span>
                                 </a>
                             </li>
                             <li role="none">
@@ -819,10 +845,10 @@
                                 ></i>
                             </button>
                             <div
-                                class="absolute left-0 mt-4 w-56 bg-white dark:bg-gray-800 rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border dark:border-gray-700 transform translate-y-2 group-hover:translate-y-0 overflow-hidden"
+                                class="absolute left-0 mt-4 w-64 bg-white dark:bg-gray-800 rounded-xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border dark:border-gray-700 transform translate-y-2 group-hover:translate-y-0 overflow-hidden"
                             >
                                 <a
-                                    href="{% url 'main:consultation_request' %}"
+                                    href="{% url 'main:phone_consultation' %}"
                                     class="block px-5 py-4 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors border-b dark:border-gray-700"
                                 >
                                     <div class="flex items-center">
@@ -842,7 +868,7 @@
                                     </div>
                                 </a>
                                 <a
-                                    href="{% url 'main:consultation_request' %}"
+                                    href="{% url 'main:24_hours_consultation' %}"
                                     class="block px-5 py-4 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors border-b dark:border-gray-700"
                                 >
                                     <div class="flex items-center">
@@ -857,6 +883,46 @@
                                                 class="text-xs text-gray-500 mt-1"
                                             >
                                                 شبانه‌روزی
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a
+                                    href="{% url 'main:in_person_consultation' %}"
+                                    class="block px-5 py-4 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors border-b dark:border-gray-700"
+                                >
+                                    <div class="flex items-center">
+                                        <i
+                                            class="fas fa-building text-theme ml-3"
+                                        ></i>
+                                        <div>
+                                            <div class="font-semibold">
+                                                مشاوره حضوری
+                                            </div>
+                                            <div
+                                                class="text-xs text-gray-500 mt-1"
+                                            >
+                                                جلسه حضوری
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                                <a
+                                    href="{% url 'main:quick_legal_advice' %}"
+                                    class="block px-5 py-4 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors border-b dark:border-gray-700"
+                                >
+                                    <div class="flex items-center">
+                                        <i
+                                            class="fas fa-bolt text-theme ml-3"
+                                        ></i>
+                                        <div>
+                                            <div class="font-semibold">
+                                                مشاوره فوری
+                                            </div>
+                                            <div
+                                                class="text-xs text-gray-500 mt-1"
+                                            >
+                                                پاسخگویی فوری
                                             </div>
                                         </div>
                                     </div>
@@ -915,7 +981,7 @@
                         </a>
 
                         <a
-                            href="{% url 'main:consultation_request' %}"
+                            href="{% url 'main:quick_legal_advice' %}"
                             class="flex items-center bg-gradient-to-r from-theme to-purple-600 hover:from-theme-dark hover:to-purple-700 text-white px-5 py-2.5 rounded-xl font-semibold transition-all duration-300 hover:shadow-lg hover:scale-105"
                         >
                             <i class="fas fa-bolt ml-2 animate-pulse"></i>
@@ -1011,7 +1077,7 @@
                             </li>
                             <li>
                                 <a
-                                    href="{% url 'main:consultation_request' %}"
+                                    href="{% url 'main:24_hours_consultation' %}"
                                     class="hover:text-white transition-colors flex items-center group"
                                 >
                                     <i
@@ -1022,35 +1088,35 @@
                             </li>
                             <li>
                                 <a
-                                    href="{% url 'main:consultation_request' %}"
+                                    href="{% url 'main:phone_consultation' %}"
                                     class="hover:text-white transition-colors flex items-center group"
                                 >
                                     <i
                                         class="fas fa-chevron-left ml-2 text-xs group-hover:text-theme transition-colors"
                                     ></i>
-                                    رزرو مشاوره تلفنی
+                                    مشاوره حقوقی تلفنی
                                 </a>
                             </li>
                             <li>
                                 <a
-                                    href="{% url 'main:consultation_request' %}"
+                                    href="{% url 'main:in_person_consultation' %}"
                                     class="hover:text-white transition-colors flex items-center group"
                                 >
                                     <i
                                         class="fas fa-chevron-left ml-2 text-xs group-hover:text-theme transition-colors"
                                     ></i>
-                                    مشاوره حقوقی ۲۴ ساعته
+                                    مشاوره حقوقی حضوری
                                 </a>
                             </li>
                             <li>
                                 <a
-                                    href="{% url 'main:consultation_request' %}"
+                                    href="{% url 'main:quick_legal_advice' %}"
                                     class="hover:text-white transition-colors flex items-center group"
                                 >
                                     <i
                                         class="fas fa-chevron-left ml-2 text-xs group-hover:text-theme transition-colors"
                                     ></i>
-                                    رزرو مشاوره تلفنی
+                                    مشاوره حقوقی فوری
                                 </a>
                             </li>
                         </ul>
