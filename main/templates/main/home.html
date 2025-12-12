@@ -3,40 +3,30 @@
 {% block meta_tags %}
 <meta name="description" content="مرکز مشاوره عدل‌بان ارائه‌دهنده مشاوره حقوقی تلفنی، آنلاین و حضوری با وکلای پایه یک و قضات بازنشسته. ۲۴ ساعته پاسخگویی با بهترین کیفیت و قیمت مناسب." />
 <meta name="keywords" content="مشاوره حقوقی,وکیل,مشاوره تلفنی,مشاوره آنلاین,قاضی بازنشسته,وکیل پایه یک,مشاوره رایگان,حقوقی,دادگستری,مشاوره ۲۴ ساعته" />
-<link rel="canonical" href="{{ request.build_absolute_uri }}" />
-{% endblock %}
-<meta
-    name="robots"
-    content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
-/>
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
 <meta name="author" content="مرکز مشاوره عدل‌بان" />
 <meta name="language" content="fa-IR" />
 <link rel="canonical" href="{{ request.build_absolute_uri }}" />
 
 <!-- Open Graph Meta Tags -->
 <meta property="og:type" content="website" />
-<meta
-    property="og:title"
-    content="مشاوره حقوقی تلفنی، آنلاین و حضوری | مرکز مشاوره عدل‌بان"
-/>
-<meta
-    property="og:description"
-    content="مشاوره حقوقی با وکلای پایه یک و قضات بازنشسته. پاسخگویی ۲۴ ساعته، مشاوره تلفنی، آنلاین و حضوری با بهترین کیفیت."
-/>
-<meta property="og:url" content="{{ request.build_absolute_uri }}" />
-<meta property="og:site_name" content="مرکز مشاوره عدل‌بان" />
+<meta property="og:title" content="مشاوره حقوقی تلفنی، آنلاین و حضوری | مرکز مشاوره عدل‌بان" />
+<meta property="og:description" content="مشاوره حقوقی با وکلای پایه یک و قضات بازنشسته. پاسخگویی ۲۴ ساعته، مشاوره تلفنی، آنلاین و حضوری با بهترین کیفیت." />
+<meta property="og:image" content="https://adlpors.ir/assets/img/og-image.jpg" />
 <meta property="og:locale" content="fa_IR" />
 
-<!-- Twitter Card Meta Tags -->
+<!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta
-    name="twitter:title"
-    content="مشاوره حقوقی تلفنی، آنلاین و حضوری | مرکز مشاوره عدل‌بان"
-/>
-<meta
-    name="twitter:description"
-    content="مشاوره حقوقی با وکلای پایه یک و قضات بازنشسته. پاسخگویی ۲۴ ساعته، مشاوره تلفنی، آنلاین و حضوری با بهترین کیفیت."
-/>
+<meta name="twitter:title" content="مشاوره حقوقی تلفنی | عدل‌بان" />
+<meta name="twitter:description" content="مشاوره حقوقی تلفنی، آنلاین و رایگان" />
+
+<!-- Additional Open Graph Meta Tags -->
+<meta property="og:url" content="{{ request.build_absolute_uri }}" />
+<meta property="og:site_name" content="مرکز مشاوره عدل‌بان" />
+
+<!-- Twitter Card Meta Tags -->
+<meta name="twitter:title" content="مشاوره حقوقی تلفنی، آنلاین و حضوری | مرکز مشاوره عدل‌بان" />
+<meta name="twitter:description" content="مشاوره حقوقی با وکلای پایه یک و قضات بازنشسته. پاسخگویی ۲۴ ساعته، مشاوره تلفنی، آنلاین و حضوری با بهترین کیفیت." />
 
 <!-- Structured Data - Organization -->
 <script type="application/ld+json">
@@ -48,47 +38,45 @@
         "url": "{{ request.build_absolute_uri }}",
         "telephone": "+98-9129413828",
         "availableLanguage": "Persian",
-        "serviceType": [
-            "مشاوره حقوقی تلفنی",
-            "مشاوره حقوقی آنلاین",
-            "مشاوره حقوقی حضوری",
-            "مشاوره با قاضی بازنشسته"
-        ],
-        "hasOfferCatalog": {
-            "@type": "OfferCatalog",
-            "name": "خدمات حقوقی",
-            "itemListElement": [
-                {
-                    "@type": "Offer",
-                    "itemOffered": {
-                        "@type": "Service",
-                        "name": "مشاوره حقوقی تلفنی",
-                        "description": "مشاوره فوری حقوقی از طریق تلفن با وکلای متخصص"
-                    }
-                },
-                {
-                    "@type": "Offer",
-                    "itemOffered": {
-                        "@type": "Service",
-                        "name": "مشاوره حقوقی آنلاین",
-                        "description": "مشاوره حقوقی آنلاین و حضوری با وکلای پایه یک"
-                    }
-                },
-                {
-                    "@type": "Offer",
-                    "itemOffered": {
-                        "@type": "Service",
-                        "name": "مشاوره با قاضی بازنشسته",
-                        "description": "مشاوره تخصصی با قضات بازنشسته دادگستری"
-                    }
-                }
-            ]
-        },
-        "areaServed": {
+        "serviceArea": {
             "@type": "Country",
             "name": "Iran"
         },
-        "openingHours": "Mo-Su 00:00-23:59"
+        "priceRange": "$$",
+        "sameAs": [
+            "https://dadgan.com",
+            "https://dadpors.com"
+        ]
+    }
+</script>
+<!-- Additional Open Graph Meta Tags -->
+<meta property="og:url" content="{{ request.build_absolute_uri }}" />
+<meta property="og:site_name" content="مرکز مشاوره عدل‌بان" />
+
+<!-- Twitter Card Meta Tags -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="مشاوره حقوقی تلفنی، آنلاین و حضوری | مرکز مشاوره عدل‌بان" />
+<meta name="twitter:description" content="مشاوره حقوقی با وکلای پایه یک و قضات بازنشسته. پاسخگویی ۲۴ ساعته، مشاوره تلفنی، آنلاین و حضوری با بهترین کیفیت." />
+
+<!-- Structured Data - Organization -->
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LegalService",
+        "name": "مرکز مشاوره عدل‌بان",
+        "description": "مرکز تخصصی مشاوره حقوقی تلفنی، آنلاین و حضوری با وکلای پایه یک و قضات بازنشسته",
+        "url": "{{ request.build_absolute_uri }}",
+        "telephone": "+98-9129413828",
+        "availableLanguage": "Persian",
+        "serviceArea": {
+            "@type": "Country",
+            "name": "Iran"
+        },
+        "priceRange": "$$",
+        "sameAs": [
+            "https://dadgan.com",
+            "https://dadpors.com"
+        ]
     }
 </script>
 
@@ -107,8 +95,11 @@
         ]
     }
 </script>
-{% endblock %} {% block title %}مشاوره حقوقی تلفنی، مشاوره آنلاین رایگان | مرکز
-مشاوره عدل‌بان{% endblock %} {% block breadcrumb %}
+{% endblock %}
+
+{% block title %}مشاوره حقوقی تلفنی، مشاوره آنلاین رایگان | مرکز مشاوره عدل‌بان{% endblock %}
+
+{% block breadcrumb %}
 <!-- Breadcrumb -->
 <div class="container mx-auto px-4 py-4">
     <nav
@@ -126,7 +117,9 @@
         >
     </nav>
 </div>
-{% endblock %} {% block content %}
+{% endblock %}
+
+{% block content %}
 <!-- Hero Section -->
 <header
     class="relative bg-gradient-to-bl from-gray-50 via-primary-50/50 to-indigo-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 overflow-hidden"
