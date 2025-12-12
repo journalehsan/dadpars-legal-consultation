@@ -19,7 +19,12 @@
         />
         <meta name="author" content="عدل‌بان" />
         <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://adlpors.ir/" />
+        
+        {% block meta_tags %}
+        <meta name="description" content="مرکز مشاوره حقوقی تلفنی عدل‌بان - مشاوره حقوقی تلفنی، آنلاین و رایگان با وکیل دادگستری. پشتیبانی ۲۴ ساعته" />
+        <meta name="keywords" content="مشاوره حقوقی تلفنی, وکیل تلفنی, مشاوره حقوقی رایگان, مشاوره حقوقی آنلاین, وکیل دادگستری" />
+        <link rel="canonical" href="{{ request.build_absolute_uri }}" />
+        {% endblock %}
 
         <!-- Open Graph / Social Media -->
         <meta property="og:type" content="website" />
@@ -613,6 +618,19 @@
                             </li>
                             <li role="none">
                                 <a
+                                    href="{% url 'main:retired_judge_consultation' %}"
+                                    class="flex items-center gap-2 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-sm"
+                                    role="menuitem"
+                                >
+                                    <i
+                                        class="fas fa-gavel text-primary-500"
+                                        aria-hidden="true"
+                                    ></i>
+                                    <span>مشاوره با قاضی بازنشسته</span>
+                                </a>
+                            </li>
+                            <li role="none">
+                                <a
                                     href="{% url 'main:consultation_request' %}"
                                     class="flex items-center gap-2 p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-sm"
                                     role="menuitem"
@@ -647,7 +665,7 @@
 
                     <li role="none">
                         <a
-                            href="{% url 'main:consultation_request' %}"
+                            href="{% url 'main:contact' %}"
                             class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 transition-colors"
                             role="menuitem"
                         >
@@ -955,7 +973,7 @@
                         </div>
 
                         <a
-                            href="{% url 'main:consultation_request' %}"
+                            href="{% url 'main:retired_judge_consultation' %}"
                             class="flex items-center text-theme dark:text-theme-light font-semibold relative group"
                         >
                             <i
@@ -968,7 +986,7 @@
                         </a>
 
                         <a
-                            href="{% url 'main:consultation_request' %}"
+                            href="{% url 'main:contact' %}"
                             class="flex items-center hover:text-theme dark:hover:text-theme-light transition-colors group relative"
                         >
                             <i

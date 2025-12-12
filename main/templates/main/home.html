@@ -1,13 +1,10 @@
-{% extends 'main/base.html' %} {% block head %}
-<!-- SEO Meta Tags -->
-<meta
-    name="description"
-    content="مرکز مشاوره عدل‌بان ارائه‌دهنده مشاوره حقوقی تلفنی، آنلاین و حضوری با وکلای پایه یک و قضات بازنشسته. ۲۴ ساعته پاسخگویی با بهترین کیفیت و قیمت مناسب."
-/>
-<meta
-    name="keywords"
-    content="مشاوره حقوقی,وکیل,مشاوره تلفنی,مشاوره آنلاین,قاضی بازنشسته,وکیل پایه یک,مشاوره رایگان,حقوقی,دادگستری,مشاوره ۲۴ ساعته"
-/>
+{% extends 'main/base.html' %}
+
+{% block meta_tags %}
+<meta name="description" content="مرکز مشاوره عدل‌بان ارائه‌دهنده مشاوره حقوقی تلفنی، آنلاین و حضوری با وکلای پایه یک و قضات بازنشسته. ۲۴ ساعته پاسخگویی با بهترین کیفیت و قیمت مناسب." />
+<meta name="keywords" content="مشاوره حقوقی,وکیل,مشاوره تلفنی,مشاوره آنلاین,قاضی بازنشسته,وکیل پایه یک,مشاوره رایگان,حقوقی,دادگستری,مشاوره ۲۴ ساعته" />
+<link rel="canonical" href="{{ request.build_absolute_uri }}" />
+{% endblock %}
 <meta
     name="robots"
     content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"

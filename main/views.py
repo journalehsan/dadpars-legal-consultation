@@ -126,17 +126,16 @@ class QuestionDetailView(DetailView):
 
 class TwentyFourHoursConsultationView(View):
     """24-hour legal consultation page view"""
-    
+
     def get(self, request):
         # Get consultation types for 24-hour service
         consultation_types = ConsultationType.objects.filter(
-            is_active=True,
-            type_key__in=['phone', 'online']
+            is_active=True, type_key__in=["phone", "online"]
         ).order_by("order", "created_at")
-        
+
         # Get FAQs related to 24-hour consultation
         faqs = FAQ.objects.filter(is_active=True).order_by("order", "created_at")[:8]
-        
+
         context = {
             "consultation_types": consultation_types,
             "faqs": faqs,
@@ -146,17 +145,16 @@ class TwentyFourHoursConsultationView(View):
 
 class PhoneConsultationView(View):
     """Phone legal consultation page view"""
-    
+
     def get(self, request):
         # Get consultation types for phone service
         consultation_types = ConsultationType.objects.filter(
-            is_active=True,
-            type_key='phone'
+            is_active=True, type_key="phone"
         ).order_by("order", "created_at")
-        
+
         # Get FAQs related to phone consultation
         faqs = FAQ.objects.filter(is_active=True).order_by("order", "created_at")[:8]
-        
+
         context = {
             "consultation_types": consultation_types,
             "faqs": faqs,
@@ -166,17 +164,16 @@ class PhoneConsultationView(View):
 
 class InPersonConsultationView(View):
     """In-person legal consultation page view"""
-    
+
     def get(self, request):
         # Get consultation types for in-person service
         consultation_types = ConsultationType.objects.filter(
-            is_active=True,
-            type_key='in_person'
+            is_active=True, type_key="in_person"
         ).order_by("order", "created_at")
-        
+
         # Get FAQs related to in-person consultation
         faqs = FAQ.objects.filter(is_active=True).order_by("order", "created_at")[:8]
-        
+
         context = {
             "consultation_types": consultation_types,
             "faqs": faqs,
@@ -186,19 +183,56 @@ class InPersonConsultationView(View):
 
 class QuickLegalAdviceView(View):
     """Quick legal advice page view"""
-    
+
     def get(self, request):
         # Get consultation types for quick advice
         consultation_types = ConsultationType.objects.filter(
-            is_active=True,
-            type_key__in=['phone', 'online']
+            is_active=True, type_key__in=["phone", "online"]
         ).order_by("order", "created_at")
-        
+
         # Get FAQs related to quick advice
         faqs = FAQ.objects.filter(is_active=True).order_by("order", "created_at")[:8]
-        
+
         context = {
             "consultation_types": consultation_types,
             "faqs": faqs,
         }
         return render(request, "main/quick_legal_advice.html", context)
+
+
+class ContactView(View):
+    """Contact page view"""
+
+    def get(self, request):
+        # Get consultation types for the form
+        consultation_types = ConsultationType.objects.filter(is_active=True).order_by(
+            "order", "created_at"
+        )
+
+        # Get FAQs for contact page
+        faqs = FAQ.objects.filter(is_active=True).order_by("order", "created_at")[:6]
+
+        context = {
+            "consultation_types": consultation_types,
+            "faqs": faqs,
+        }
+        return render(request, "main/contact.html", context)
+
+
+class RetiredJudgeConsultationView(View):
+    """Retired judge consultation page view"""
+
+    def get(self, request):
+        # Get consultation types for retired judge service
+        consultation_types = ConsultationType.objects.filter(
+            is_active=True, type_key__in=["phone", "online", "in_person"]
+        ).order_by("order", "created_at")
+
+        # Get FAQs related to retired judge consultation
+        faqs = FAQ.objects.filter(is_active=True).order_by("order", "created_at")[:8]
+
+        context = {
+            "consultation_types": consultation_types,
+            "faqs": faqs,
+        }
+        return render(request, "main/retired_judge_consultation.html", context)

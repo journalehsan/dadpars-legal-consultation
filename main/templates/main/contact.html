@@ -1,0 +1,182 @@
+{% extends "main/base.html" %}
+
+{% block title %}تماس با ما | مرکز مشاوره حقوقی دادپارس{% endblock %}
+
+{% block meta_tags %}
+<meta name="description" content="تماس با مرکز مشاوره حقوقی دادپارس - راه‌های ارتباطی با وکلای متخصص حقوقی برای دریافت مشاوره تلفنی، آنلاین و حضوری" />
+<meta name="keywords" content="تماس با وکیل, مشاوره حقوقی تماس, اطلاعات تماس وکیل, آدرس دفتر وکیل" />
+<link rel="canonical" href="{{ request.build_absolute_uri }}" />
+{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8">
+    <div class="max-w-4xl mx-auto">
+        <!-- Page Header -->
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-gray-800 dark:text-white mb-4">
+                تماس با ما
+            </h1>
+            <p class="text-lg text-gray-600 dark:text-gray-300">
+                برای دریافت مشاوره حقوقی تخصصی، می‌توانید از طریق راه‌های زیر با ما در ارتباط باشید
+            </p>
+        </div>
+
+        <!-- Contact Information Cards -->
+        <div class="grid md:grid-cols-2 gap-8 mb-12">
+            <!-- Phone Contact -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+                <div class="flex items-center mb-4">
+                    <div class="bg-blue-100 dark:bg-blue-900 p-3 rounded-full ml-4">
+                        <i class="fas fa-phone text-blue-600 dark:text-blue-300 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 dark:text-white">
+                        تماس تلفنی
+                    </h3>
+                </div>
+                <div class="space-y-2 text-gray-600 dark:text-gray-300">
+                    <p class="text-lg font-medium">تلفن: ۰۹۱۲۹۴۱۳۸۲۸</p>
+                    <p>شنبه تا چهارشنبه: ۹ صبح تا ۸ شب</p>
+                    <p>پنج‌شنبه: ۹ صبح تا ۵ بعد از ظهر</p>
+                </div>
+            </div>
+
+            <!-- Online Contact -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+                <div class="flex items-center mb-4">
+                    <div class="bg-green-100 dark:bg-green-900 p-3 rounded-full ml-4">
+                        <i class="fas fa-globe text-green-600 dark:text-green-300 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 dark:text-white">
+                        مشاوره آنلاین
+                    </h3>
+                </div>
+                <div class="space-y-2 text-gray-600 dark:text-gray-300">
+                    <p class="text-lg font-medium">وب‌سایت: dadpors.com</p>
+                    <p>چت آنلاین ۲۴ ساعته</p>
+                    <p>مشاوره از طریق واتس‌اپ و تلگرام</p>
+                </div>
+            </div>
+
+            <!-- In-Person Contact -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+                <div class="flex items-center mb-4">
+                    <div class="bg-purple-100 dark:bg-purple-900 p-3 rounded-full ml-4">
+                        <i class="fas fa-map-marker-alt text-purple-600 dark:text-purple-300 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 dark:text-white">
+                        مشاوره حضوری
+                    </h3>
+                </div>
+                <div class="space-y-2 text-gray-600 dark:text-gray-300">
+                    <p class="text-lg font-medium">آدرس: تهران، خیابان ولیعصر</p>
+                    <p>با هماهنگی قبلی</p>
+                    <p>شنبه تا چهارشنبه: ۱۰ صبح تا ۶ بعد از ظهر</p>
+                </div>
+            </div>
+
+            <!-- Emergency Contact -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+                <div class="flex items-center mb-4">
+                    <div class="bg-red-100 dark:bg-red-900 p-3 rounded-full ml-4">
+                        <i class="fas fa-exclamation-triangle text-red-600 dark:text-red-300 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 dark:text-white">
+                        موارد اضطراری
+                    </h3>
+                </div>
+                <div class="space-y-2 text-gray-600 dark:text-gray-300">
+                    <p class="text-lg font-medium">فوری: ۰۹۱۲۹۴۱۳۸۲۸</p>
+                    <p>۲۴ ساعته و ۷ روز هفته</p>
+                    <p>برای امور حقوقی فوری و ضروری</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
+            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6 text-center">
+                فرم درخواست مشاوره
+            </h2>
+            
+            <form method="post" action="{% url 'main:consultation_request' %}">
+                {% csrf_token %}
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="{{ form.name.id_for_label }}" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                            نام و نام خانوادگی *
+                        </label>
+                        {{ form.name }}
+                    </div>
+                    
+                    <div>
+                        <label for="{{ form.phone.id_for_label }}" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                            شماره تماس *
+                        </label>
+                        {{ form.phone }}
+                    </div>
+                    
+                    <div>
+                        <label for="{{ form.email.id_for_label }}" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                            ایمیل
+                        </label>
+                        {{ form.email }}
+                    </div>
+                    
+                    <div>
+                        <label for="{{ form.consultation_type.id_for_label }}" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                            نوع مشاوره *
+                        </label>
+                        {{ form.consultation_type }}
+                    </div>
+                </div>
+                
+                <div class="mt-6">
+                    <label for="{{ form.subject.id_for_label }}" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        موضوع مشاوره *
+                    </label>
+                    {{ form.subject }}
+                </div>
+                
+                <div class="mt-6">
+                    <label for="{{ form.description.id_for_label }}" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        توضیحات کامل پرونده
+                    </label>
+                    {{ form.description }}
+                </div>
+                
+                <div class="mt-8 text-center">
+                    <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg transition-colors duration-200">
+                        ارسال درخواست مشاوره
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Additional Information -->
+        <div class="mt-12 bg-blue-50 dark:bg-blue-900/20 rounded-lg p-6">
+            <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-4">
+                نکات مهم
+            </h3>
+            <ul class="space-y-2 text-gray-600 dark:text-gray-300">
+                <li class="flex items-start">
+                    <i class="fas fa-check-circle text-blue-600 dark:text-blue-400 ml-2 mt-1"></i>
+                    <span>مشاوره‌های تلفنی و آنلاین در سریع‌ترین زمان ممکن پاسخگوی شما هستند</span>
+                </li>
+                <li class="flex items-start">
+                    <i class="fas fa-check-circle text-blue-600 dark:text-blue-400 ml-2 mt-1"></i>
+                    <span>برای مشاوره حضوری حتماً از قبل هماهنگ کنید</span>
+                </li>
+                <li class="flex items-start">
+                    <i class="fas fa-check-circle text-blue-600 dark:text-blue-400 ml-2 mt-1"></i>
+                    <span>در صورت نیاز به مشاوره فوری، با شماره اضطراری تماس بگیرید</span>
+                </li>
+                <li class="flex items-start">
+                    <i class="fas fa-check-circle text-blue-600 dark:text-blue-400 ml-2 mt-1"></i>
+                    <span>همه اطلاعات شما محرمانه باقی می‌ماند</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

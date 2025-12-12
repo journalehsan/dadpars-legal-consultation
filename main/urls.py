@@ -48,4 +48,14 @@ urlpatterns = [
         views.QuickLegalAdviceView.as_view(),
         name="quick_legal_advice",
     ),
+    path(
+        "contact/",
+        views.ContactView.as_view(),
+        name="contact",
+    ),
+    path(
+        "retired-judge-consultation/",
+        views.RetiredJudgeConsultationView.as_view(),
+        name="retired_judge_consultation",
+    ),
 ]
