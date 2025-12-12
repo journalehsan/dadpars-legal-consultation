@@ -425,6 +425,29 @@
                 transform: translateY(0);
             }
 
+            /* ===== Search Styles ===== */
+            .line-clamp-2 {
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+
+            #searchContainer {
+                animation: slideDown 0.2s ease-out;
+            }
+
+            @keyframes slideDown {
+                from {
+                    opacity: 0;
+                    transform: translateY(-10px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
             /* ===== Print Styles ===== */
             @media print {
                 header,
@@ -535,6 +558,19 @@
                                 aria-hidden="true"
                             ></i>
                             <span>خانه</span>
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a
+                            href="{% url 'main:questions_list' %}"
+                            class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300 transition-colors"
+                            role="menuitem"
+                        >
+                            <i
+                                class="fas fa-question-circle w-5 text-center"
+                                aria-hidden="true"
+                            ></i>
+                            <span>سوالات حقوقی</span>
                         </a>
                     </li>
 
@@ -760,12 +796,45 @@
                             class="flex items-center space-x-4 space-x-reverse"
                         >
                             <!-- Search Button -->
-                            <button
-                                class="p-1 hover:text-blue-200 transition-colors has-tooltip"
-                                data-tooltip="جستجو"
-                            >
-                                <i class="fas fa-search"></i>
-                            </button>
+                            <div class="relative">
+                                <button
+                                    id="searchToggle"
+                                    class="p-1 hover:text-blue-200 transition-colors has-tooltip"
+                                    data-tooltip="جستجو"
+                                    onclick="toggleSearch()"
+                                >
+                                    <i class="fas fa-search"></i>
+                                </button>
+                                <!-- Expanded Search Input -->
+                                <div
+                                    id="searchContainer"
+                                    class="absolute top-full left-0 mt-2 w-80 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 hidden z-50"
+                                >
+                                    <div class="p-3">
+                                        <div class="relative">
+                                            <input
+                                                type="text"
+                                                id="searchInput"
+                                                placeholder="جستجوی سوالات حقوقی..."
+                                                class="w-full px-4 py-2 pr-10 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                                onkeyup="handleSearch(event)"
+                                                oninput="searchQuestions()"
+                                            />
+                                            <button
+                                                onclick="clearSearch()"
+                                                class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+                                            >
+                                                <i class="fas fa-times"></i>
+                                            </button>
+                                        </div>
+                                        <!-- Search Results -->
+                                        <div
+                                            id="searchResults"
+                                            class="mt-3 max-h-60 overflow-y-auto"
+                                        ></div>
+                                    </div>
+                                </div>
+                            </div>
                             <!-- Dark Mode Toggle -->
                             <button
                                 onclick="toggleDarkMode()"
@@ -845,6 +914,19 @@
                                 class="fas fa-home ml-2 group-hover:scale-110 transition-transform"
                             ></i>
                             خانه
+                            <span
+                                class="absolute -bottom-1 right-0 w-0 h-0.5 bg-theme group-hover:w-full transition-all duration-300"
+                            ></span>
+                        </a>
+
+                        <a
+                            href="{% url 'main:questions_list' %}"
+                            class="flex items-center hover:text-theme dark:hover:text-theme-light transition-colors group relative"
+                        >
+                            <i
+                                class="fas fa-question-circle ml-2 group-hover:scale-110 transition-transform"
+                            ></i>
+                            سوالات حقوقی
                             <span
                                 class="absolute -bottom-1 right-0 w-0 h-0.5 bg-theme group-hover:w-full transition-all duration-300"
                             ></span>
@@ -1442,6 +1524,133 @@
             document.addEventListener("keydown", (e) => {
                 if (e.key === "Escape") {
                     closeSidebar();
+                    closeSearch();
+                }
+            });
+
+            // ===== Search Functions =====
+            let searchTimeout;
+            let currentSearchResults = [];
+
+            function toggleSearch() {
+                const searchContainer = document.getElementById("searchContainer");
+                const searchInput = document.getElementById("searchInput");
+                
+                if (searchContainer.classList.contains("hidden")) {
+                    searchContainer.classList.remove("hidden");
+                    searchInput.focus();
+                } else {
+                    closeSearch();
+                }
+            }
+
+            function closeSearch() {
+                const searchContainer = document.getElementById("searchContainer");
+                const searchInput = document.getElementById("searchInput");
+                const searchResults = document.getElementById("searchResults");
+                
+                searchContainer.classList.add("hidden");
+                searchInput.value = "";
+                searchResults.innerHTML = "";
+                currentSearchResults = [];
+            }
+
+            function clearSearch() {
+                const searchInput = document.getElementById("searchInput");
+                const searchResults = document.getElementById("searchResults");
+                
+                searchInput.value = "";
+                searchResults.innerHTML = "";
+                searchInput.focus();
+            }
+
+            function handleSearch(event) {
+                if (event.key === "Escape") {
+                    closeSearch();
+                } else if (event.key === "Enter" && currentSearchResults.length > 0) {
+                    // Navigate to first result
+                    window.location.href = currentSearchResults[0].url;
+                }
+            }
+
+            async function searchQuestions() {
+                const searchInput = document.getElementById("searchInput");
+                const searchResults = document.getElementById("searchResults");
+                const query = searchInput.value.trim();
+                
+                // Clear previous timeout
+                if (searchTimeout) {
+                    clearTimeout(searchTimeout);
+                }
+                
+                if (query.length < 2) {
+                    searchResults.innerHTML = "";
+                    currentSearchResults = [];
+                    return;
+                }
+                
+                // Show loading indicator
+                searchResults.innerHTML = `
+                    <div class="text-center py-3 text-gray-500 dark:text-gray-400">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <span class="mr-2">در حال جستجو...</span>
+                    </div>
+                `;
+                
+                // Debounce search
+                searchTimeout = setTimeout(async () => {
+                    try {
+                        const response = await fetch(`{% url 'main:search_questions' %}?q=${encodeURIComponent(query)}`);
+                        const data = await response.json();
+                        
+                        currentSearchResults = data.questions;
+                        
+                        if (data.questions.length === 0) {
+                            searchResults.innerHTML = `
+                                <div class="text-center py-3 text-gray-500 dark:text-gray-400">
+                                    <i class="fas fa-search"></i>
+                                    <span class="mr-2">نتیجه‌ای یافت نشد</span>
+                                </div>
+                            `;
+                        } else {
+                            const resultsHtml = data.questions.map(question => `
+                                <div class="border-b border-gray-200 dark:border-gray-600 last:border-b-0 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors cursor-pointer" onclick="navigateToQuestion('${question.url}')">
+                                    <div class="p-3">
+                                        <h4 class="font-medium text-gray-900 dark:text-white mb-1">${question.question}</h4>
+                                        ${question.description ? `<p class="text-sm text-gray-600 dark:text-gray-300 line-clamp-2">${question.description}</p>` : ''}
+                                        <div class="flex items-center justify-between mt-2">
+                                            <span class="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 rounded-full">${question.category}</span>
+                                            <span class="text-xs text-gray-500 dark:text-gray-400">${question.created_at}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            `).join('');
+                            
+                            searchResults.innerHTML = resultsHtml;
+                        }
+                    } catch (error) {
+                        console.error('Search error:', error);
+                        searchResults.innerHTML = `
+                            <div class="text-center py-3 text-red-500 dark:text-red-400">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <span class="mr-2">خطا در جستجو</span>
+                            </div>
+                        `;
+                    }
+                }, 300);
+            }
+
+            function navigateToQuestion(url) {
+                window.location.href = url;
+            }
+
+            // Close search when clicking outside
+            document.addEventListener("click", (e) => {
+                const searchContainer = document.getElementById("searchContainer");
+                const searchToggle = document.getElementById("searchToggle");
+                
+                if (!searchContainer.contains(e.target) && !searchToggle.contains(e.target)) {
+                    closeSearch();
                 }
             });
         </script>

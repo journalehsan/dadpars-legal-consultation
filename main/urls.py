@@ -58,4 +58,14 @@ urlpatterns = [
         views.RetiredJudgeConsultationView.as_view(),
         name="retired_judge_consultation",
     ),
+    path(
+        "search/questions/",
+        views.SearchQuestionsView.as_view(),
+        name="search_questions",
+    ),
+    path(
+        "questions/",
+        views.QuestionsListView.as_view(),
+        name="questions_list",
+    ),
 ]

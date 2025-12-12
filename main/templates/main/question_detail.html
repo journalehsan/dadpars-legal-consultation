@@ -21,9 +21,9 @@
                 <span
                     class="inline-block px-3 py-1 bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 rounded-full text-sm font-medium"
                 >
-                    {% for category, label in question.CATEGORY_CHOICES %}{% if
-                    question.category == category %}{{ label }}{% endif %}{%
-                    endfor %}
+                    {% for category, label in question.CATEGORY_CHOICES %}
+                        {% if question.category == category %}{{ label }}{% endif %}
+                    {% endfor %}
                 </span>
                 {% if question.questioner_name %}
                 <span class="text-gray-500 dark:text-gray-400 text-sm"

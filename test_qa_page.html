@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q&A Page Test</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-50 p-8">
+    <div class="max-w-4xl mx-auto">
+        <h1 class="text-2xl font-bold mb-6">Q&A Page Functionality Test</h1>
+        
+        <div class="bg-white p-6 rounded-lg shadow mb-6">
+            <h2 class="text-lg font-semibold mb-4">Test Links</h2>
+            <div class="space-y-2">
+                <a href="http://localhost:8000/questions/" target="_blank" class="block text-blue-600 hover:text-blue-800">
+                    <i class="fas fa-external-link-alt ml-2"></i>
+                    Q&A Main Page (All Questions)
+                </a>
+                <a href="http://localhost:8000/questions/?category=family" target="_blank" class="block text-blue-600 hover:text-blue-800">
+                    <i class="fas fa-external-link-alt ml-2"></i>
+                    Filter by Family Category
+                </a>
+                <a href="http://localhost:8000/questions/?sort=newest" target="_blank" class="block text-blue-600 hover:text-blue-800">
+                    <i class="fas fa-external-link-alt ml-2"></i>
+                    Sort by Newest
+                </a>
+                <a href="http://localhost:8000/questions/?sort=answered" target="_blank" class="block text-blue-600 hover:text-blue-800">
+                    <i class="fas fa-external-link-alt ml-2"></i>
+                    Sort by Answered
+                </a>
+                <a href="http://localhost:8000/questions/?sort=unanswered" target="_blank" class="block text-blue-600 hover:text-blue-800">
+                    <i class="fas fa-external-link-alt ml-2"></i>
+                    Sort by Unanswered
+                </a>
+            </div>
+        </div>
+        
+        <div class="bg-blue-50 p-4 rounded-lg">
+            <h3 class="font-semibold mb-2">Features Implemented:</h3>
+            <ul class="list-disc list-inside space-y-1 text-sm">
+                <li>✅ Q&A listing page with all questions</li>
+                <li>✅ Category filtering (family, criminal, civil, labor, real_estate, commercial, other)</li>
+                <li>✅ Sorting options (newest, oldest, answered, unanswered)</li>
+                <li>✅ Statistics cards showing total, answered, and unanswered questions</li>
+                <li>✅ Pagination (12 questions per page)</li>
+                <li>✅ Responsive design for mobile and desktop</li>
+                <li>✅ Question cards with title, description, category, and meta info</li>
+                <li>✅ Navigation links added to both desktop and mobile menus</li>
+                <li>✅ Dark mode support</li>
+                <li>✅ RTL support for Persian text</li>
+            </ul>
+        </div>
+        
+        <div class="mt-6 bg-green-50 p-4 rounded-lg">
+            <h3 class="font-semibold mb-2">How to Test:</h3>
+            <ol class="list-decimal list-inside space-y-1 text-sm">
+                <li>Click the main Q&A page link to see all questions</li>
+                <li>Try different category filters from the dropdown</li>
+                <li>Test different sorting options</li>
+                <li>Navigate through pagination if there are many questions</li>
+                <li>Click on any question to view its details</li>
+                <li>Test on mobile by resizing browser or using mobile dev tools</li>
+                <li>Toggle dark mode to ensure proper styling</li>
+            </ol>
+        </div>
+    </div>
+</body>
+</html>

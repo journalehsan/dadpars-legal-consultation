@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Q, Count
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
@@ -236,3 +237,105 @@ class RetiredJudgeConsultationView(View):
             "faqs": faqs,
         }
         return render(request, "main/retired_judge_consultation.html", context)
+
+
+class SearchQuestionsView(View):
+    """Search questions in database"""
+
+    def get(self, request):
+        query = request.GET.get("q", "").strip()
+
+        if not query:
+            return JsonResponse({"questions": []})
+
+        # Search in questions and descriptions
+        questions = (
+            RecentQuestion.objects.filter(
+                Q(question__icontains=query) | Q(description__icontains=query)
+            )
+            .filter(is_active=True)
+            .order_by("-created_at")[:10]
+        )
+
+        results = []
+        for question in questions:
+            results.append(
+                {
+                    "id": question.id,
+                    "question": question.question,
+                    "description": question.description[:100] + "..."
+                    if question.description and len(question.description) > 100
+                    else question.description,
+                    "category": question.get_category_display()
+                    if hasattr(question, "get_category_display")
+                    else "",
+                    "url": question.get_absolute_url(),
+                    "created_at": question.created_at.strftime("%Y/%m/%d"),
+                }
+            )
+
+        return JsonResponse({"questions": results})
+
+
+class QuestionsListView(ListView):
+    """List all questions with filtering and sorting"""
+
+    model = RecentQuestion
+    template_name = "main/questions_list.html"
+    context_object_name = "questions"
+    paginate_by = 12
+
+    def get_queryset(self):
+        queryset = RecentQuestion.objects.filter(is_active=True)
+
+        # Category filtering
+        category = self.request.GET.get("category")
+        if category and category != "all":
+            queryset = queryset.filter(category=category)
+
+        # Sorting
+        sort_by = self.request.GET.get("sort", "newest")
+        if sort_by == "newest":
+            queryset = queryset.order_by("-created_at")
+        elif sort_by == "oldest":
+            queryset = queryset.order_by("created_at")
+        elif sort_by == "answered":
+            queryset = queryset.filter(is_answered=True).order_by("-created_at")
+        elif sort_by == "unanswered":
+            queryset = queryset.filter(is_answered=False).order_by("-created_at")
+
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        # Add category choices for filter
+        context["category_choices"] = RecentQuestion.CATEGORY_CHOICES
+        context["current_category"] = self.request.GET.get("category", "all")
+        context["current_sort"] = self.request.GET.get("sort", "newest")
+
+        # Add statistics
+        context["total_questions"] = RecentQuestion.objects.filter(
+            is_active=True
+        ).count()
+        context["answered_questions"] = RecentQuestion.objects.filter(
+            is_active=True, is_answered=True
+        ).count()
+        context["unanswered_questions"] = RecentQuestion.objects.filter(
+            is_active=True, is_answered=False
+        ).count()
+
+        # Get answers count for each question
+        question_ids = [q.id for q in context["questions"]]
+        answers_count = (
+            LawyerAnswer.objects.filter(question_id__in=question_ids, is_active=True)
+            .values("question_id")
+            .annotate(count=Count("id"))
+        )
+
+        answers_dict = {item["question_id"]: item["count"] for item in answers_count}
+
+        for question in context["questions"]:
+            question.answers_count = answers_dict.get(question.id, 0)
+
+        return context
